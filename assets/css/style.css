@@ -1,0 +1,141 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 1.2em;
+}
+
+/* Hero section */
+#hero {
+    background: url('assets/images/hero-bg.jpg') no-repeat center center/cover;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color: #333;
+}
+
+#content{
+    padding: 40px;
+    background-color: white;    
+}
+
+#content h2 {
+    margin-bottom: 20px;
+}
+
+#hero h1 {
+    font-size: 2.5em;
+}
+
+/* About section */
+#about {
+    padding: 40px;
+    background-color: white;
+}
+
+#about h2 {
+    margin-bottom: 20px;
+}
+
+/* Projects section */
+#projects {
+    background-color: #f9f9f9;
+    padding: 40px;
+}
+
+#projects .projects {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.project-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+}
+
+.project-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.project-card h3 {
+    margin-top: 10px;
+}
+
+/* Contact section */
+#contact {
+    background-color: white;
+    padding: 40px;
+}
+
+#contact h2 {
+    margin-bottom: 20px;
+}
+
+#contact ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+#contact ul li a {
+    font-size: 1.1em;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
