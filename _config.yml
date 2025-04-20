@@ -25,8 +25,8 @@ url: "https://ashwathnivas.github.io"
 author:
   name: "Ashwath Nivas"
   email: "<your-email>"
-theme: minimal-mistakes-jekyll
-minimal_mistakes_skin: "dark"  # For a cybersecurity vibe
+theme: jekyll-theme-cayman
+#minimal_mistakes_skin: "dark"  # For a cybersecurity vibe
 
 plugins:
   - jekyll-feed
