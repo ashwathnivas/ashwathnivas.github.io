@@ -1,11 +1,7 @@
 source "https://rubygems.org"
-gem "jekyll"
-gem "jekyll-theme-slate"
-gem "github-pages", group: :jekyll_plugins
-group :jekyll_plugins do
-  gem "jekyll-sitemap", "~> 1.4"
-end
 
+gem "github-pages", group: :jekyll_plugins
+gem "jekyll-theme-slate", group: :jekyll_plugins
 
 # source "https://rubygems.org"
 # # Hello! This is where you manage which Jekyll version is used to run.
