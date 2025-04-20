@@ -24,8 +24,8 @@ description: A blog on malware analysis and cybersecurity trends
 url: "https://ashwathnivas.github.io"
 author:
   name: "Ashwath Nivas"
-  email: "<your-email>"
-theme: jekyll-theme-cayman
+#  email: "<your-email>"
+theme: jekyll-theme-slate
 #minimal_mistakes_skin: "dark"  # For a cybersecurity vibe
 
 plugins:
