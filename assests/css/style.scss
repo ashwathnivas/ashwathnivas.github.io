@@ -1,27 +1,21 @@
 @import "{{ site.theme }}";
 
-
 body {
-background-color: #121212;
-color: #e0e0e0;
+  background-color: #121212;
+  color: #e0e0e0;
 }
-
 
 a {
-color: #64b5f6;
+  color: #64b5f6;
 }
-
-
 a:hover {
-color: #bb86fc;
+  color: #bb86fc;
 }
-
 
 .site-header, .site-footer {
-background: #1e1e1e;
+  background: #1e1e1e;
 }
 
-
 .post-title, h1, h2, h3, h4, h5, h6 {
-color: #ffffff;
+  color: #ffffff;
 }
