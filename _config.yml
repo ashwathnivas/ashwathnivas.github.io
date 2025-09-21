@@ -46,3 +46,12 @@ plugins:
 header_pages:
 - about.md
 - projects.md
+
+sass:
+  style: compressed
+
+defaults:
+  - scope:
+      path: "assets/css"
+    values:
+      layout: null
