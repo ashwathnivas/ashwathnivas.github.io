@@ -40,7 +40,7 @@ for p in sorted(POSTS_DIR.glob("*.html"), reverse=True):
 
     title = title.group(1).strip() if title else p.name
     date = date.group(1).strip() if date else ""
-    summary = truncate(clean_text(summary.group(1))) if summary else ""
+    summary = truncate(clean_text(summary.group(1)), MAX_WORDS) if summary else ""
 
     cards.append(f"""
     <div class="card">
