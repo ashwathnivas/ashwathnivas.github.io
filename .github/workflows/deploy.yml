@@ -3,15 +3,18 @@ name: Build & Deploy Static Site
 on:
   push:
     branches:
-      - main 
+      - main
   workflow_dispatch:
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -21,11 +24,10 @@ jobs:
       - name: Generate site-links.html
         run: python3 scripts/generate_links.py
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  
-          publish_branch: main
-          force_orphan: true
-
+          publish_branch: gh-pages   # separate branch
+          publish_dir: ./            # deploy everything from repo root
+          force_orphan: true         # clean branch every deploy
