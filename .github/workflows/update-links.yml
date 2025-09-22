@@ -1,0 +1,36 @@
+name: Update Site Links
+
+on:
+  push:
+    paths:
+      - "_posts/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Generate site-links.html
+        run: |
+          echo "<!DOCTYPE html><html><head><link rel='stylesheet' href='assets/css/style.css'></head><body>" > site-links.html
+          echo "<h2>All Posts</h2><div class='card-grid'>" >> site-links.html
+          for file in $(ls _posts/*.html | sort -r); do
+            fname=$(basename "$file")
+            title=$(grep -m1 "<title>" "$file" | sed 's/<\\/?title>//g')
+            date=$(grep -m1 "<small>" "$file" | sed 's/<\\/?small>//g')
+            summary=$(grep -m1 "<p>" "$file" | sed 's/<\\/?p>//g')
+            echo \"<div class='card'><h3><a href='_posts/$fname'>$title</a></h3><p class='date'>$date</p><p class='summary'>$summary</p></div>\" >> site-links.html
+          done
+          echo "</div></body></html>" >> site-links.html
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add site-links.html
+          git commit -m "Update site-links.html"
+          git push
