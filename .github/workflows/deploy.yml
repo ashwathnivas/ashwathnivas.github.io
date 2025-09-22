@@ -3,7 +3,7 @@ name: Build & Deploy Static Site
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main 
   workflow_dispatch:
 
 jobs:
