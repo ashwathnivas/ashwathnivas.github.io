@@ -21,10 +21,11 @@ jobs:
       - name: Generate site-links.html
         run: python3 scripts/generate_links.py
 
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v6
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./public  # Adjust this path if your build output is elsewhere
           publish_branch: gh-pages
           force_orphan: true
+
