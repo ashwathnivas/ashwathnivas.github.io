@@ -41,9 +41,10 @@ def generate_cards(posts):
         date = date.group(1).strip() if date else ""
         summary = truncate(clean_text(summary.group(1)), MAX_WORDS) if summary else ""
 
+        # Use p.as_posix() so subdirectories work correctly
         cards.append(f"""
         <div class="card">
-          <h3><a href="{p.relative_to(Path.cwd())}">{html.escape(title)}</a></h3>
+          <h3><a href="{p.as_posix()}">{html.escape(title)}</a></h3>
           {'<p class="date">'+html.escape(date)+'</p>' if date else ''}
           {'<p class="summary">'+html.escape(summary)+'</p>' if summary else ''}
         </div>
