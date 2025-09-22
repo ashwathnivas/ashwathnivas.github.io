@@ -1,7 +1,5 @@
-# scripts/generate_links.py
 #!/usr/bin/env python3
-import re
-import html
+import re, html
 from pathlib import Path
 
 POSTS_DIR = Path("_posts")
@@ -21,56 +19,36 @@ HEADER = f"""<!DOCTYPE html>
 <h2>All Posts</h2>
 <div class="card-grid">
 """
-FOOTER = """
-</div>
-</body>
-</html>
-"""
-
-def extract_first(pattern, text):
-    m = re.search(pattern, text, re.I | re.S)
-    return m.group(1).strip() if m else ""
+FOOTER = "</div></body></html>"
 
 def clean_text(s):
-    s = re.sub(r'<[^>]+>', '', s)  # strip tags
+    s = re.sub(r'<[^>]+>', '', s)
     s = html.unescape(s)
-    s = ' '.join(s.split())
-    return s
+    return ' '.join(s.split())
 
-def truncate_words(s, n):
+def truncate(s, n):
     words = s.split()
-    if len(words) > n:
-        return ' '.join(words[:n]) + '...'
-    return s
+    return ' '.join(words[:n]) + ("..." if len(words) > n else "")
 
-posts = sorted(POSTS_DIR.glob("*.html"), reverse=True)
+cards = []
+for p in sorted(POSTS_DIR.glob("*.html"), reverse=True):
+    txt = p.read_text(encoding="utf-8", errors="ignore")
 
-out_parts = [HEADER]
+    title = re.search(r"<title>(.*?)</title>", txt, re.I|re.S)
+    date = re.search(r"<small>(.*?)</small>", txt, re.I|re.S)
+    summary = re.search(r"<p>(.*?)</p>", txt, re.I|re.S)
 
-for p in posts:
-    try:
-        txt = p.read_text(encoding='utf-8')
-    except Exception:
-        txt = p.read_text(encoding='latin-1')
+    title = title.group(1).strip() if title else p.name
+    date = date.group(1).strip() if date else ""
+    summary = truncate(clean_text(summary.group(1))) if summary else ""
 
-    title = extract_first(r'<title>(.*?)</title>', txt) or p.name
-    date = extract_first(r'<small>(.*?)</small>', txt)
-    summary_raw = extract_first(r'<p>(.*?)</p>', txt)
-    summary = clean_text(summary_raw)
-    summary = truncate_words(summary, MAX_WORDS)
+    cards.append(f"""
+    <div class="card">
+      <h3><a href="_posts/{p.name}">{html.escape(title)}</a></h3>
+      {'<p class="date">'+html.escape(date)+'</p>' if date else ''}
+      {'<p class="summary">'+html.escape(summary)+'</p>' if summary else ''}
+    </div>
+    """)
 
-    title_esc = html.escape(title)
-    date_esc = html.escape(date) if date else ""
-    summary_esc = html.escape(summary) if summary else ""
-
-    card = f"""<div class="card">
-  <h3><a href="_posts/{p.name}">{title_esc}</a></h3>
-  {"<p class=\"date\">"+date_esc+"</p>" if date_esc else ""}
-  {"<p class=\"summary\">"+summary_esc+"</p>" if summary_esc else ""}
-</div>
-"""
-    out_parts.append(card)
-
-out_parts.append(FOOTER)
-OUT_FILE.write_text(''.join(out_parts), encoding='utf-8')
-print(f"Wrote {OUT_FILE} ({len(posts)} posts).")
+OUT_FILE.write_text(HEADER + "\n".join(cards) + FOOTER, encoding="utf-8")
+print(f"✅ site-links.html updated with {len(cards)} posts")
