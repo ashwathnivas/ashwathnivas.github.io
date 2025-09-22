@@ -1,0 +1,30 @@
+name: Build & Deploy Static Site
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Generate site-links.html
+        run: python3 scripts/generate_links.py
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          force_orphan: true
