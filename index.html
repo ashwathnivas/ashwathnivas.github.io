@@ -2,63 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Ethan's Portfolio</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ethan's Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <header>
-        <h1>Ethan's Portfolio</h1>
-        <nav>
-            <a href="index.html">Home</a> |
-            <a href="site-links.html">Blog</a> |
-            <a href="https://github.com/ethan">GitHub</a>
-        </nav>
-    </header>
+  <header>
+    <h1>Ethan's Portfolio</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="site-links.html">Blog</a> |
+      <a href="https://github.com/ethan">GitHub</a>
+    </nav>
+  </header>
 
-    <!-- Search Widget -->
-    <section>
-        <h2>Search</h2>
-        <div id="search-widget"></div>
-    </section>
+  <!-- Search -->
+  <section>
+    <h2>Search</h2>
+    <input type="text" id="search-box" placeholder="Search posts..." />
+  </section>
 
-    <!-- Latest Posts -->
-    <section id="latest-posts">
-        <h2>Latest Posts</h2>
-        <div id="posts-container"></div>
-    </section>
+  <!-- Latest Posts -->
+  <section id="latest-posts">
+    <h2>Latest Posts</h2>
+    <div id="posts-container"></div>
+  </section>
 
-    <script type="module">
-        // Wait for DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', () => {
-            // Fetch latest posts
-            fetch('site-links.html')
-                .then(r => r.text())
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const cardGrid = doc.querySelector('.card-grid');
-                    const container = document.getElementById('posts-container');
-                    if (cardGrid) container.appendChild(cardGrid);
+  <footer>
+    <p>© 2025 Ethan</p>
+  </footer>
 
-                    // Now mount the search widget AFTER posts are in DOM
-                    import('assets/widgets/Search.js').then(module => {
-                        module.default({
-                            target: document.getElementById('search-widget'),
-                            props: {
-                                containerSelector: '#posts-container' // optional, pass container to search widget
-                            }
-                        });
-                    });
-                });
-        });
-    </script>
-
-    <footer>
-        <p>© 2025 Ethan</p>
-    </footer>
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>
