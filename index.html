@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Ethan's Portfolio</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/svelte/build/bundle.css">
 </head>
 <body>
   <header>
@@ -12,18 +13,18 @@
     <nav>
       <a href="index.html">Home</a> |
       <a href="site-links.html">Blog</a> |
-      <a href="https://github.com/<your-username>">GitHub</a>
+      <a href="https://github.com/ashwathnivas">GitHub</a>
     </nav>
   </header>
 
   <main>
-    <h2>Welcome 🚀</h2>
-    <p>Here you’ll find my projects, blogs, and more.</p>
-    <iframe src="site-links.html" width="100%" height="600" frameborder="0"></iframe>
+    <div id="svelte-app"></div>
   </main>
 
   <footer>
     <p>© 2025 Ethan</p>
   </footer>
+
+  <script type="module" src="assets/svelte/build/bundle.js"></script>
 </body>
 </html>
