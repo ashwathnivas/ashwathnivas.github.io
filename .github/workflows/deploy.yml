@@ -29,11 +29,13 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install deps
+        run: npm ci
+        working-directory: ./svelte-app
+
       - name: Build Svelte
-        run: |
-          cd svelte-app
-          npm install
-          npm run build
+        run: npm run build
+        working-directory: ./svelte-app
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
