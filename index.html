@@ -18,31 +18,43 @@
         </nav>
     </header>
 
+    <!-- Search Widget -->
+    <section>
+        <h2>Search</h2>
+        <div id="search-widget"></div>
+    </section>
+
+    <!-- Latest Posts -->
     <section id="latest-posts">
         <h2>Latest Posts</h2>
         <div id="posts-container"></div>
     </section>
 
     <script type="module">
-        fetch('site-links.html')
-            .then(r => r.text())
-            .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const cardGrid = doc.querySelector('.card-grid');
-                const container = document.getElementById('posts-container');
-                if (cardGrid) container.appendChild(cardGrid);
+        // Wait for DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fetch latest posts
+            fetch('site-links.html')
+                .then(r => r.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const cardGrid = doc.querySelector('.card-grid');
+                    const container = document.getElementById('posts-container');
+                    if (cardGrid) container.appendChild(cardGrid);
 
-                // Now mount the search widget AFTER posts are loaded
-                import('/assets/widgets/Search.js').then(module => {
-                    module.default({
-                        target: document.getElementById('search-widget')
+                    // Now mount the search widget AFTER posts are in DOM
+                    import('assets/widgets/Search.js').then(module => {
+                        module.default({
+                            target: document.getElementById('search-widget'),
+                            props: {
+                                containerSelector: '#posts-container' // optional, pass container to search widget
+                            }
+                        });
                     });
                 });
-            });
+        });
     </script>
-
-    <div id="search-widget"></div>
 
     <footer>
         <p>© 2025 Ethan</p>
