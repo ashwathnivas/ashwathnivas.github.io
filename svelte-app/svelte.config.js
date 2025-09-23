@@ -1,12 +1,14 @@
-import adapterStatic from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 
-export default {
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
   preprocess: preprocess(),
+
   kit: {
-    adapter: adapterStatic({
-      pages: '../assets/svelte',    // output path
-      assets: '../assets/svelte',   // static assets
+    adapter: adapter({
+      pages: '../assets/svelte',   // output HTML/JS/CSS to your repo
+      assets: '../assets/svelte',  // static assets
       fallback: null
     }),
     paths: {
@@ -14,3 +16,5 @@ export default {
     }
   }
 };
+
+export default config;
