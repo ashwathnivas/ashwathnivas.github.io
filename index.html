@@ -15,7 +15,22 @@
       <a href="https://github.com/ethan">GitHub</a>
     </nav>
   </header>
-
+  <section id="latest-posts">
+    <h2>Latest Posts</h2>
+  </section>
+  
+  <script>
+    fetch('site-links.html')
+      .then(r => r.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const cards = doc.querySelectorAll('.card');
+        const container = document.getElementById('latest-posts');
+        cards.forEach(card => container.appendChild(card));
+      });
+  </script>
+  
   <main>
     <section>
       <h2>Search</h2>
