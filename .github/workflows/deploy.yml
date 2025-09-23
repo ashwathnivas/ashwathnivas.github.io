@@ -24,10 +24,21 @@ jobs:
       - name: Generate site-links.html
         run: python3 scripts/generate_links.py
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Build Svelte
+        run: |
+          cd svelte-app
+          npm install
+          npm run build
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages   # separate branch
-          publish_dir: ./            # deploy everything from repo root
-          force_orphan: true         # clean branch every deploy
+          publish_branch: gh-pages
+          publish_dir: ./
+          force_orphan: true
