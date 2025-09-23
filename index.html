@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Ethan's Portfolio</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <header>
-    <h1>Ethan's Portfolio</h1>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="site-links.html">Blog</a> |
-      <a href="https://github.com/ethan">GitHub</a>
-    </nav>
-  </header>
-  
-  <section id="latest-posts">
-    <h2>Latest Posts</h2>
-  </section>
-  
-  <script>
-  fetch('site-links.html')
-    .then(r => r.text())
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const cardGrid = doc.querySelector('.card-grid'); // grab the whole grid
-      const container = document.getElementById('latest-posts');
-      if(cardGrid) {
-        container.appendChild(cardGrid); // append grid instead of individual cards
-      }
-    });
-  </script>
-  
-  
-  <main>
-    <section>
-      <h2>Search</h2>
-      <div id="search-widget"></div>
-      <script type="module" src="assets/widgets/Search.js"></script>
-    </section>
-  </main>
 
-  <footer>
-    <p>© 2025 Ethan</p>
-  </footer>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ethan's Portfolio</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Ethan's Portfolio</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="site-links.html">Blog</a> |
+            <a href="https://github.com/ethan">GitHub</a>
+        </nav>
+    </header>
+
+    <section id="latest-posts">
+        <h2>Latest Posts</h2>
+        <div id="posts-container"></div>
+    </section>
+
+    <script type="module">
+        fetch('site-links.html')
+            .then(r => r.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const cardGrid = doc.querySelector('.card-grid');
+                const container = document.getElementById('posts-container');
+                if (cardGrid) container.appendChild(cardGrid);
+
+                // Now mount the search widget AFTER posts are loaded
+                import('/assets/widgets/Search.js').then(module => {
+                    module.default({
+                        target: document.getElementById('search-widget')
+                    });
+                });
+            });
+    </script>
+
+    <div id="search-widget"></div>
+
+    <footer>
+        <p>© 2025 Ethan</p>
+    </footer>
 </body>
+
 </html>
