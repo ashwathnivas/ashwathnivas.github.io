@@ -4,8 +4,10 @@ class FloatingNavManager {
       this.nav = document.getElementById("floating-nav")
       this.navToggle = document.getElementById("nav-toggle")
       this.panelToggle = document.getElementById("nav-panel-toggle")
+      this.mobileBottomNav = document.getElementById("mobile-bottom-nav")
       this.mainContent = document.querySelector(".main-content")
       this.navLinks = document.querySelectorAll(".nav-link")
+      this.mobileNavItems = document.querySelectorAll(".mobile-nav-item")
       this.sections = document.querySelectorAll("section[id]")
       this.isNavVisible = true
   
@@ -16,6 +18,7 @@ class FloatingNavManager {
       this.setupToggle()
       this.setupPanelToggle()
       this.setupNavigation()
+      this.setupMobileNavigation()
       this.setupScrollSpy()
       this.handleResize()
     }
@@ -32,7 +35,7 @@ class FloatingNavManager {
         if (
           window.innerWidth <= 1024 &&
           !this.nav.contains(e.target) &&
-          !this.navToggle.contains(e.target) &&
+          !this.navToggle?.contains(e.target) &&
           this.nav.classList.contains("active")
         ) {
           this.nav.classList.remove("active")
@@ -46,6 +49,26 @@ class FloatingNavManager {
           this.toggleNavPanel()
         })
       }
+    }
+  
+    setupMobileNavigation() {
+      this.mobileNavItems.forEach((item) => {
+        if (!item.classList.contains("theme-toggle-mobile")) {
+          item.addEventListener("click", (e) => {
+            e.preventDefault()
+            const targetId = item.getAttribute("href")
+            const targetSection = document.querySelector(targetId)
+  
+            if (targetSection) {
+              const offsetTop = targetSection.offsetTop - 2 * 16 // 2rem offset
+              window.scrollTo({
+                top: offsetTop,
+                behavior: "smooth",
+              })
+            }
+          })
+        }
+      })
     }
   
     toggleNavPanel() {
@@ -112,10 +135,19 @@ class FloatingNavManager {
     }
   
     updateActiveNav(activeId) {
+      // Update desktop nav
       this.navLinks.forEach((link) => {
         link.classList.remove("active")
         if (link.getAttribute("href") === `#${activeId}`) {
           link.classList.add("active")
+        }
+      })
+  
+      // Update mobile nav
+      this.mobileNavItems.forEach((item) => {
+        item.classList.remove("active")
+        if (item.getAttribute("href") === `#${activeId}`) {
+          item.classList.add("active")
         }
       })
     }
@@ -141,17 +173,19 @@ class FloatingNavManager {
   // Theme Manager
   class ThemeManager {
     constructor() {
-      this.theme = localStorage.getItem("theme") || "light"
+      this.theme = localStorage.getItem("theme") || "dark" // Default to dark
       this.themeToggle = document.getElementById("theme-toggle")
-      this.sunIcon = this.themeToggle.querySelector(".sun-icon")
-      this.moonIcon = this.themeToggle.querySelector(".moon-icon")
+      this.themeToggleMobile = document.getElementById("theme-toggle-mobile")
+      this.sunIcon = this.themeToggle?.querySelector(".sun-icon")
+      this.moonIcon = this.themeToggle?.querySelector(".moon-icon")
   
       this.init()
     }
   
     init() {
       this.setTheme(this.theme)
-      this.themeToggle.addEventListener("click", () => this.toggleTheme())
+      this.themeToggle?.addEventListener("click", () => this.toggleTheme())
+      this.themeToggleMobile?.addEventListener("click", () => this.toggleTheme())
     }
   
     setTheme(theme) {
@@ -159,13 +193,15 @@ class FloatingNavManager {
       document.documentElement.setAttribute("data-theme", theme)
       localStorage.setItem("theme", theme)
   
-      // Update icons
-      if (theme === "dark") {
-        this.sunIcon.style.opacity = "0"
-        this.moonIcon.style.opacity = "1"
-      } else {
-        this.sunIcon.style.opacity = "1"
-        this.moonIcon.style.opacity = "0"
+      // Update desktop icons
+      if (this.sunIcon && this.moonIcon) {
+        if (theme === "light") {
+          this.sunIcon.style.opacity = "1"
+          this.moonIcon.style.opacity = "0"
+        } else {
+          this.sunIcon.style.opacity = "0"
+          this.moonIcon.style.opacity = "1"
+        }
       }
     }
   
@@ -237,17 +273,19 @@ class FloatingNavManager {
         filteredPosts = filteredPosts.filter((post) => post.dataset.category === this.currentCategory)
       }
   
-      // Filter by search
+      // Filter by search (including tags)
       if (this.currentSearch) {
         filteredPosts = filteredPosts.filter((post) => {
           const title = post.querySelector(".blog-title").textContent.toLowerCase()
           const excerpt = post.querySelector(".blog-excerpt").textContent.toLowerCase()
           const category = post.querySelector(".blog-category").textContent.toLowerCase()
+          const tags = post.dataset.tags?.toLowerCase() || ""
   
           return (
             title.includes(this.currentSearch) ||
             excerpt.includes(this.currentSearch) ||
-            category.includes(this.currentSearch)
+            category.includes(this.currentSearch) ||
+            tags.includes(this.currentSearch)
           )
         })
       }
@@ -522,7 +560,7 @@ class FloatingNavManager {
           </a>
           <a href="#" class="share-btn linkedin" data-platform="linkedin" data-url="${postUrl}" data-title="${postTitle}" aria-label="Share on LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v11.452zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
           </a>
           <a href="#" class="share-btn bluesky" data-platform="bluesky" data-url="${postUrl}" data-title="${postTitle}" aria-label="Share on Bluesky">
@@ -532,6 +570,137 @@ class FloatingNavManager {
           </a>
         </div>
       `
+    }
+  }
+  
+  // Reading Progress Manager
+  class ReadingProgressManager {
+    constructor() {
+      this.progressBar = document.getElementById("reading-progress")
+      this.init()
+    }
+  
+    init() {
+      if (this.progressBar) {
+        this.setupScrollListener()
+      }
+    }
+  
+    setupScrollListener() {
+      window.addEventListener(
+        "scroll",
+        debounce(() => {
+          this.updateProgress()
+        }, 10),
+      )
+    }
+  
+    updateProgress() {
+      // Only show on blog posts (check if we're on a blog post page)
+      const isBlogPost = window.location.pathname.includes("_posts/")
+  
+      if (!isBlogPost) {
+        this.progressBar.classList.remove("visible")
+        return
+      }
+  
+      const scrollTop = window.pageYOffset
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const scrollPercent = (scrollTop / docHeight) * 100
+  
+      this.progressBar.style.width = `${Math.min(scrollPercent, 100)}%`
+  
+      if (scrollPercent > 5) {
+        this.progressBar.classList.add("visible")
+      } else {
+        this.progressBar.classList.remove("visible")
+      }
+    }
+  }
+  
+  // Related Posts Manager
+  class RelatedPostsManager {
+    constructor() {
+      this.init()
+    }
+  
+    init() {
+      // This would be called on individual blog post pages
+      if (window.location.pathname.includes("_posts/")) {
+        this.loadRelatedPosts()
+      }
+    }
+  
+    loadRelatedPosts() {
+      // Mock data - in real implementation, this would fetch from your posts
+      const currentCategory = this.getCurrentCategory()
+      const relatedPosts = this.getRelatedPosts(currentCategory)
+  
+      if (relatedPosts.length > 0) {
+        this.renderRelatedPosts(relatedPosts)
+      }
+    }
+  
+    getCurrentCategory() {
+      // Extract category from URL path
+      const pathParts = window.location.pathname.split("/")
+      return pathParts[pathParts.length - 2] || "cybersecurity"
+    }
+  
+    getRelatedPosts(currentCategory) {
+      // Mock related posts - replace with actual data
+      const allPosts = [
+        {
+          title: "Advanced Threat Detection with Machine Learning",
+          excerpt: "Exploring how ML algorithms can identify zero-day threats...",
+          category: "cybersecurity",
+          url: "_posts/cybersecurity/ml-threat-detection.html",
+        },
+        {
+          title: "Building Scalable Security Infrastructure",
+          excerpt: "Best practices for designing security systems...",
+          category: "engineering",
+          url: "_posts/engineering/scalable-security.html",
+        },
+        {
+          title: "Reverse Engineering Modern Ransomware",
+          excerpt: "A deep dive into the latest ransomware techniques...",
+          category: "malware",
+          url: "_posts/malware/ransomware-analysis.html",
+        },
+      ]
+  
+      // Get 2 from same category, 1 from different
+      const sameCategory = allPosts.filter((post) => post.category === currentCategory).slice(0, 2)
+      const differentCategory = allPosts.filter((post) => post.category !== currentCategory).slice(0, 1)
+  
+      return [...sameCategory, ...differentCategory].slice(0, 3)
+    }
+  
+    renderRelatedPosts(posts) {
+      const relatedSection = document.createElement("div")
+      relatedSection.className = "related-posts"
+      relatedSection.innerHTML = `
+        <h3>Related Posts</h3>
+        <div class="related-posts-grid">
+          ${posts
+            .map(
+              (post) => `
+            <div class="related-post-card">
+              <span class="blog-category ${post.category}">${post.category}</span>
+              <h4>${post.title}</h4>
+              <p>${post.excerpt}</p>
+              <a href="${post.url}" class="blog-link">Read more</a>
+            </div>
+          `,
+            )
+            .join("")}
+        </div>
+      `
+  
+      // Insert before any existing footer or at the end of main content
+      const mainContent = document.querySelector("main") || document.body
+      mainContent.appendChild(relatedSection)
     }
   }
   
@@ -555,7 +724,8 @@ class FloatingNavManager {
     new ScrollReveal()
     new SecurityDashboard()
     new SocialSharingManager()
-    // new TypingEffect() // Uncomment if you want typing effect
+    new ReadingProgressManager() // Added reading progress
+    new RelatedPostsManager() // Added related posts
   
     console.log("[v0] Cyber Security Portfolio initialized successfully")
   })
@@ -576,6 +746,8 @@ class FloatingNavManager {
     ScrollReveal,
     SecurityDashboard,
     SocialSharingManager,
+    ReadingProgressManager,
+    RelatedPostsManager,
     debounce,
   }
   
