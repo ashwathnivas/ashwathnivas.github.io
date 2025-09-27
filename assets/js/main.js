@@ -21,6 +21,21 @@ class FloatingNavManager {
       this.setupMobileNavigation()
       this.setupScrollSpy()
       this.handleResize()
+      this.checkInitialViewport()
+    }
+  
+    checkInitialViewport() {
+      if (window.innerWidth <= 1024) {
+        this.nav.classList.remove("nav-hidden")
+        this.mainContent.classList.remove("nav-hidden")
+        if (this.panelToggle) {
+          this.panelToggle.style.display = "none"
+        }
+      } else {
+        if (this.panelToggle) {
+          this.panelToggle.style.display = "flex"
+        }
+      }
     }
   
     setupToggle() {
@@ -156,15 +171,21 @@ class FloatingNavManager {
       window.addEventListener("resize", () => {
         if (window.innerWidth > 1024) {
           this.nav.classList.remove("active")
+          if (this.panelToggle) {
+            this.panelToggle.style.display = "flex"
+          }
           // Reset panel visibility on desktop
           if (!this.isNavVisible) {
             this.nav.classList.add("nav-hidden")
             this.mainContent.classList.add("nav-hidden")
           }
         } else {
-          // On mobile, always show nav when resizing
+          // On mobile, always show nav when resizing and hide panel toggle
           this.nav.classList.remove("nav-hidden")
           this.mainContent.classList.remove("nav-hidden")
+          if (this.panelToggle) {
+            this.panelToggle.style.display = "none"
+          }
         }
       })
     }
@@ -256,7 +277,7 @@ class FloatingNavManager {
         this.filterAndSearch()
       }
   
-      this.searchInput.addEventListener("input", debounce(performSearch, 300))
+      this.searchInput.addEventListener("input", debounce(performSearch, 200))
       this.searchBtn.addEventListener("click", performSearch)
       this.searchInput.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
@@ -560,7 +581,7 @@ class FloatingNavManager {
           </a>
           <a href="#" class="share-btn linkedin" data-platform="linkedin" data-url="${postUrl}" data-title="${postTitle}" aria-label="Share on LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v11.452zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.564v11.452zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
           </a>
           <a href="#" class="share-btn bluesky" data-platform="bluesky" data-url="${postUrl}" data-title="${postTitle}" aria-label="Share on Bluesky">
@@ -596,8 +617,11 @@ class FloatingNavManager {
     }
   
     updateProgress() {
-      // Only show on blog posts (check if we're on a blog post page)
-      const isBlogPost = window.location.pathname.includes("_posts/")
+      // Show on blog posts (check if we're on a blog post page or if there's blog content)
+      const isBlogPost =
+        window.location.pathname.includes("_posts/") ||
+        document.querySelector(".blog-post-content") ||
+        document.querySelector("article")
   
       if (!isBlogPost) {
         this.progressBar.classList.remove("visible")
@@ -724,8 +748,8 @@ class FloatingNavManager {
     new ScrollReveal()
     new SecurityDashboard()
     new SocialSharingManager()
-    new ReadingProgressManager() // Added reading progress
-    new RelatedPostsManager() // Added related posts
+    new ReadingProgressManager()
+    new RelatedPostsManager()
   
     console.log("[v0] Cyber Security Portfolio initialized successfully")
   })
