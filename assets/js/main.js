@@ -1,74 +1,22 @@
-// Floating Navigation Manager
-class FloatingNavManager {
+// Bottom Navigation Manager
+class BottomNavManager {
     constructor() {
-      this.nav = document.getElementById("floating-nav")
-      this.navToggle = document.getElementById("nav-toggle")
-      this.panelToggle = document.getElementById("nav-panel-toggle")
-      this.mobileBottomNav = document.getElementById("mobile-bottom-nav")
-      this.mainContent = document.querySelector(".main-content")
-      this.navLinks = document.querySelectorAll(".nav-link")
-      this.mobileNavItems = document.querySelectorAll(".mobile-nav-item")
+      this.bottomNav = document.getElementById("bottom-nav")
+      this.navItems = document.querySelectorAll(".bottom-nav .nav-item")
       this.sections = document.querySelectorAll("section[id]")
-      this.isNavVisible = true
+      this.mainContent = document.querySelector(".main-content")
   
       this.init()
     }
   
     init() {
-      this.setupToggle()
-      this.setupPanelToggle()
       this.setupNavigation()
-      this.setupMobileNavigation()
       this.setupScrollSpy()
-      this.handleResize()
-      this.checkInitialViewport()
     }
   
-    checkInitialViewport() {
-      if (window.innerWidth <= 1024) {
-        this.nav.classList.remove("nav-hidden")
-        this.mainContent.classList.remove("nav-hidden")
-        if (this.panelToggle) {
-          this.panelToggle.style.display = "none"
-        }
-      } else {
-        if (this.panelToggle) {
-          this.panelToggle.style.display = "flex"
-        }
-      }
-    }
-  
-    setupToggle() {
-      if (this.navToggle) {
-        this.navToggle.addEventListener("click", () => {
-          this.nav.classList.toggle("active")
-        })
-      }
-  
-      // Close nav when clicking outside on mobile
-      document.addEventListener("click", (e) => {
-        if (
-          window.innerWidth <= 1024 &&
-          !this.nav.contains(e.target) &&
-          !this.navToggle?.contains(e.target) &&
-          this.nav.classList.contains("active")
-        ) {
-          this.nav.classList.remove("active")
-        }
-      })
-    }
-  
-    setupPanelToggle() {
-      if (this.panelToggle) {
-        this.panelToggle.addEventListener("click", () => {
-          this.toggleNavPanel()
-        })
-      }
-    }
-  
-    setupMobileNavigation() {
-      this.mobileNavItems.forEach((item) => {
-        if (!item.classList.contains("theme-toggle-mobile")) {
+    setupNavigation() {
+      this.navItems.forEach((item) => {
+        if (!item.classList.contains("theme-toggle")) {
           item.addEventListener("click", (e) => {
             e.preventDefault()
             const targetId = item.getAttribute("href")
@@ -83,51 +31,6 @@ class FloatingNavManager {
             }
           })
         }
-      })
-    }
-  
-    toggleNavPanel() {
-      this.isNavVisible = !this.isNavVisible
-  
-      if (this.isNavVisible) {
-        this.nav.classList.remove("nav-hidden")
-        this.mainContent.classList.remove("nav-hidden")
-        this.panelToggle.innerHTML = `
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 12h18m-9-9l9 9-9 9"/>
-          </svg>
-        `
-      } else {
-        this.nav.classList.add("nav-hidden")
-        this.mainContent.classList.add("nav-hidden")
-        this.panelToggle.innerHTML = `
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12H3m18-9l-9 9 9 9"/>
-          </svg>
-        `
-      }
-    }
-  
-    setupNavigation() {
-      this.navLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault()
-          const targetId = link.getAttribute("href")
-          const targetSection = document.querySelector(targetId)
-  
-          if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 2 * 16 // 2rem offset
-            window.scrollTo({
-              top: offsetTop,
-              behavior: "smooth",
-            })
-  
-            // Close mobile nav
-            if (window.innerWidth <= 1024) {
-              this.nav.classList.remove("active")
-            }
-          }
-        })
       })
     }
   
@@ -150,42 +53,11 @@ class FloatingNavManager {
     }
   
     updateActiveNav(activeId) {
-      // Update desktop nav
-      this.navLinks.forEach((link) => {
-        link.classList.remove("active")
-        if (link.getAttribute("href") === `#${activeId}`) {
-          link.classList.add("active")
-        }
-      })
-  
-      // Update mobile nav
-      this.mobileNavItems.forEach((item) => {
+      // Update bottom nav
+      this.navItems.forEach((item) => {
         item.classList.remove("active")
         if (item.getAttribute("href") === `#${activeId}`) {
           item.classList.add("active")
-        }
-      })
-    }
-  
-    handleResize() {
-      window.addEventListener("resize", () => {
-        if (window.innerWidth > 1024) {
-          this.nav.classList.remove("active")
-          if (this.panelToggle) {
-            this.panelToggle.style.display = "flex"
-          }
-          // Reset panel visibility on desktop
-          if (!this.isNavVisible) {
-            this.nav.classList.add("nav-hidden")
-            this.mainContent.classList.add("nav-hidden")
-          }
-        } else {
-          // On mobile, always show nav when resizing and hide panel toggle
-          this.nav.classList.remove("nav-hidden")
-          this.mainContent.classList.remove("nav-hidden")
-          if (this.panelToggle) {
-            this.panelToggle.style.display = "none"
-          }
         }
       })
     }
@@ -196,7 +68,6 @@ class FloatingNavManager {
     constructor() {
       this.theme = localStorage.getItem("theme") || "dark" // Default to dark
       this.themeToggle = document.getElementById("theme-toggle")
-      this.themeToggleMobile = document.getElementById("theme-toggle-mobile")
       this.sunIcon = this.themeToggle?.querySelector(".sun-icon")
       this.moonIcon = this.themeToggle?.querySelector(".moon-icon")
   
@@ -206,7 +77,6 @@ class FloatingNavManager {
     init() {
       this.setTheme(this.theme)
       this.themeToggle?.addEventListener("click", () => this.toggleTheme())
-      this.themeToggleMobile?.addEventListener("click", () => this.toggleTheme())
     }
   
     setTheme(theme) {
@@ -214,7 +84,6 @@ class FloatingNavManager {
       document.documentElement.setAttribute("data-theme", theme)
       localStorage.setItem("theme", theme)
   
-      // Update desktop icons
       if (this.sunIcon && this.moonIcon) {
         if (theme === "light") {
           this.sunIcon.style.opacity = "1"
@@ -232,7 +101,7 @@ class FloatingNavManager {
     }
   }
   
-  // Blog Manager with Category Support
+  // Blog Manager with Enhanced Search and Category Support
   class BlogManager {
     constructor() {
       this.blogGrid = document.getElementById("blog-grid")
@@ -366,8 +235,8 @@ class FloatingNavManager {
   class ScrollReveal {
     constructor() {
       this.elements = document.querySelectorAll(`
-        .hero-badge, .hero-title, .hero-description, .hero-stats, .hero-actions,
-        .security-dashboard, .skill-item, .project-card, .tool-card, .about-text
+        .hero-badge, .hero-title, .hero-description, .hero-stats, .hero-actions, .hero-social,
+        .skill-item, .project-card, .tool-card, .about-text
       `)
       this.init()
     }
@@ -392,131 +261,6 @@ class FloatingNavManager {
       )
   
       this.elements.forEach((el) => observer.observe(el))
-    }
-  }
-  
-  // Security Dashboard Animation
-  class SecurityDashboard {
-    constructor() {
-      this.dashboard = document.querySelector(".security-dashboard")
-      this.metrics = document.querySelectorAll(".metric-value")
-      this.init()
-    }
-  
-    init() {
-      if (this.dashboard) {
-        this.animateMetrics()
-      }
-    }
-  
-    animateMetrics() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            this.startCountAnimation()
-            observer.unobserve(entry.target)
-          }
-        })
-      })
-  
-      observer.observe(this.dashboard)
-    }
-  
-    startCountAnimation() {
-      this.metrics.forEach((metric) => {
-        const finalValue = metric.textContent
-        const isNumber = /^\d+/.test(finalValue)
-  
-        if (isNumber) {
-          const number = Number.parseInt(finalValue.replace(/,/g, ""))
-          this.animateNumber(metric, 0, number, 2000)
-        }
-      })
-    }
-  
-    animateNumber(element, start, end, duration) {
-      const startTime = performance.now()
-      const originalText = element.textContent
-  
-      const animate = (currentTime) => {
-        const elapsed = currentTime - startTime
-        const progress = Math.min(elapsed / duration, 1)
-  
-        const current = Math.floor(start + (end - start) * this.easeOutQuart(progress))
-  
-        if (originalText.includes(",")) {
-          element.textContent = current.toLocaleString()
-        } else {
-          element.textContent = current.toString()
-        }
-  
-        if (progress < 1) {
-          requestAnimationFrame(animate)
-        } else {
-          element.textContent = originalText // Restore original formatting
-        }
-      }
-  
-      requestAnimationFrame(animate)
-    }
-  
-    easeOutQuart(t) {
-      return 1 - Math.pow(1 - t, 4)
-    }
-  }
-  
-  // Typing Effect for Hero Title
-  class TypingEffect {
-    constructor() {
-      this.titleElement = document.querySelector(".hero-title")
-      this.init()
-    }
-  
-    init() {
-      if (this.titleElement) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              this.startTyping()
-              observer.unobserve(entry.target)
-            }
-          })
-        })
-  
-        observer.observe(this.titleElement)
-      }
-    }
-  
-    startTyping() {
-      const originalText = this.titleElement.innerHTML
-      const highlightMatch = originalText.match(/<span class="highlight">(.*?)<\/span>/)
-  
-      if (highlightMatch) {
-        const beforeHighlight = originalText.substring(0, originalText.indexOf("<span"))
-        const highlightText = highlightMatch[1]
-        const afterHighlight = originalText.substring(originalText.indexOf("</span>") + 7)
-  
-        this.titleElement.innerHTML = ""
-  
-        this.typeText(beforeHighlight, () => {
-          this.titleElement.innerHTML += '<span class="highlight">'
-          this.typeText(highlightText, () => {
-            this.titleElement.innerHTML += "</span>" + afterHighlight
-          })
-        })
-      }
-    }
-  
-    typeText(text, callback) {
-      let i = 0
-      const timer = setInterval(() => {
-        this.titleElement.innerHTML += text.charAt(i)
-        i++
-        if (i >= text.length) {
-          clearInterval(timer)
-          if (callback) callback()
-        }
-      }, 50)
     }
   }
   
@@ -617,11 +361,11 @@ class FloatingNavManager {
     }
   
     updateProgress() {
-      // Show on blog posts (check if we're on a blog post page or if there's blog content)
       const isBlogPost =
         window.location.pathname.includes("_posts/") ||
         document.querySelector(".blog-post-content") ||
-        document.querySelector("article")
+        document.querySelector("article") ||
+        document.querySelector(".blog-section")
   
       if (!isBlogPost) {
         this.progressBar.classList.remove("visible")
@@ -672,7 +416,6 @@ class FloatingNavManager {
     }
   
     getRelatedPosts(currentCategory) {
-      // Mock related posts - replace with actual data
       const allPosts = [
         {
           title: "Advanced Threat Detection with Machine Learning",
@@ -691,6 +434,18 @@ class FloatingNavManager {
           excerpt: "A deep dive into the latest ransomware techniques...",
           category: "malware",
           url: "_posts/malware/ransomware-analysis.html",
+        },
+        {
+          title: "Zero-Day Vulnerability Research",
+          excerpt: "Methods and tools for discovering security flaws...",
+          category: "cybersecurity",
+          url: "_posts/cybersecurity/zero-day-research.html",
+        },
+        {
+          title: "API Security Best Practices",
+          excerpt: "Securing modern web APIs against common attacks...",
+          category: "engineering",
+          url: "_posts/engineering/api-security.html",
         },
       ]
   
@@ -742,16 +497,15 @@ class FloatingNavManager {
   }
   
   document.addEventListener("DOMContentLoaded", () => {
-    new FloatingNavManager()
+    new BottomNavManager()
     new ThemeManager()
     new BlogManager()
     new ScrollReveal()
-    new SecurityDashboard()
     new SocialSharingManager()
     new ReadingProgressManager()
     new RelatedPostsManager()
   
-    console.log("[v0] Cyber Security Portfolio initialized successfully")
+    console.log("[v0] Cyber Security Portfolio with bottom navigation initialized successfully")
   })
   
   // Handle window events
@@ -764,11 +518,10 @@ class FloatingNavManager {
   )
   
   window.CyberSecurityPortfolio = {
-    FloatingNavManager,
+    BottomNavManager,
     ThemeManager,
     BlogManager,
     ScrollReveal,
-    SecurityDashboard,
     SocialSharingManager,
     ReadingProgressManager,
     RelatedPostsManager,
