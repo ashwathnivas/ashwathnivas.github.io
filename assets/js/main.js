@@ -3,30 +3,71 @@ class FloatingNavManager {
     constructor() {
       this.nav = document.getElementById("floating-nav")
       this.navToggle = document.getElementById("nav-toggle")
+      this.panelToggle = document.getElementById("nav-panel-toggle")
+      this.mainContent = document.querySelector(".main-content")
       this.navLinks = document.querySelectorAll(".nav-link")
       this.sections = document.querySelectorAll("section[id]")
+      this.isNavVisible = true
   
       this.init()
     }
   
     init() {
       this.setupToggle()
+      this.setupPanelToggle()
       this.setupNavigation()
       this.setupScrollSpy()
       this.handleResize()
     }
   
     setupToggle() {
-      this.navToggle.addEventListener("click", () => {
-        this.nav.classList.toggle("active")
-      })
+      if (this.navToggle) {
+        this.navToggle.addEventListener("click", () => {
+          this.nav.classList.toggle("active")
+        })
+      }
   
       // Close nav when clicking outside on mobile
       document.addEventListener("click", (e) => {
-        if (window.innerWidth <= 1024 && !this.nav.contains(e.target) && this.nav.classList.contains("active")) {
+        if (
+          window.innerWidth <= 1024 &&
+          !this.nav.contains(e.target) &&
+          !this.navToggle.contains(e.target) &&
+          this.nav.classList.contains("active")
+        ) {
           this.nav.classList.remove("active")
         }
       })
+    }
+  
+    setupPanelToggle() {
+      if (this.panelToggle) {
+        this.panelToggle.addEventListener("click", () => {
+          this.toggleNavPanel()
+        })
+      }
+    }
+  
+    toggleNavPanel() {
+      this.isNavVisible = !this.isNavVisible
+  
+      if (this.isNavVisible) {
+        this.nav.classList.remove("nav-hidden")
+        this.mainContent.classList.remove("nav-hidden")
+        this.panelToggle.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18m-9-9l9 9-9 9"/>
+          </svg>
+        `
+      } else {
+        this.nav.classList.add("nav-hidden")
+        this.mainContent.classList.add("nav-hidden")
+        this.panelToggle.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12H3m18-9l-9 9 9 9"/>
+          </svg>
+        `
+      }
     }
   
     setupNavigation() {
@@ -83,6 +124,15 @@ class FloatingNavManager {
       window.addEventListener("resize", () => {
         if (window.innerWidth > 1024) {
           this.nav.classList.remove("active")
+          // Reset panel visibility on desktop
+          if (!this.isNavVisible) {
+            this.nav.classList.add("nav-hidden")
+            this.mainContent.classList.add("nav-hidden")
+          }
+        } else {
+          // On mobile, always show nav when resizing
+          this.nav.classList.remove("nav-hidden")
+          this.mainContent.classList.remove("nav-hidden")
         }
       })
     }
@@ -411,6 +461,80 @@ class FloatingNavManager {
     }
   }
   
+  // Social Sharing Manager for blog posts
+  class SocialSharingManager {
+    constructor() {
+      this.init()
+    }
+  
+    init() {
+      this.setupSharingButtons()
+    }
+  
+    setupSharingButtons() {
+      document.addEventListener("click", (e) => {
+        if (e.target.closest(".share-btn")) {
+          e.preventDefault()
+          const shareBtn = e.target.closest(".share-btn")
+          const platform = shareBtn.dataset.platform
+          const url = shareBtn.dataset.url || window.location.href
+          const title = shareBtn.dataset.title || document.title
+  
+          this.shareToSocial(platform, url, title)
+        }
+      })
+    }
+  
+    shareToSocial(platform, url, title) {
+      const encodedUrl = encodeURIComponent(url)
+      const encodedTitle = encodeURIComponent(title)
+      const encodedText = encodeURIComponent(`Check out this article: "${title}"`)
+  
+      let shareUrl = ""
+  
+      switch (platform) {
+        case "twitter":
+          shareUrl = `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`
+          break
+        case "linkedin":
+          shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`
+          break
+        case "bluesky":
+          shareUrl = `https://bsky.app/intent/compose?text=${encodedText}%20${encodedUrl}`
+          break
+        default:
+          console.warn("Unknown social platform:", platform)
+          return
+      }
+  
+      // Open in new window
+      window.open(shareUrl, "social-share", "width=600,height=400,scrollbars=yes,resizable=yes")
+    }
+  
+    // Helper method to generate sharing buttons HTML
+    static generateSharingButtons(postUrl, postTitle) {
+      return `
+        <div class="blog-social-share">
+          <a href="#" class="share-btn twitter" data-platform="twitter" data-url="${postUrl}" data-title="${postTitle}" aria-label="Share on Twitter/X">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="share-btn linkedin" data-platform="linkedin" data-url="${postUrl}" data-title="${postTitle}" aria-label="Share on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="#" class="share-btn bluesky" data-platform="bluesky" data-url="${postUrl}" data-title="${postTitle}" aria-label="Share on Bluesky">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-2.67-.296-5.568.628-6.383 3.364C.378 17.902 0 22.862 0 23.55c0 .688.139 1.86.902 2.203.659.299 1.664.621 4.3-1.239C16.046 4.747 13.087 8.686 12 10.8z"/>
+            </svg>
+          </a>
+        </div>
+      `
+    }
+  }
+  
   // Utility Functions
   function debounce(func, wait) {
     let timeout
@@ -424,13 +548,13 @@ class FloatingNavManager {
     }
   }
   
-  // Initialize all functionality
   document.addEventListener("DOMContentLoaded", () => {
     new FloatingNavManager()
     new ThemeManager()
     new BlogManager()
     new ScrollReveal()
     new SecurityDashboard()
+    new SocialSharingManager()
     // new TypingEffect() // Uncomment if you want typing effect
   
     console.log("[v0] Cyber Security Portfolio initialized successfully")
@@ -445,13 +569,13 @@ class FloatingNavManager {
     }, 250),
   )
   
-  // Export for potential use in other scripts
   window.CyberSecurityPortfolio = {
     FloatingNavManager,
     ThemeManager,
     BlogManager,
     ScrollReveal,
     SecurityDashboard,
+    SocialSharingManager,
     debounce,
   }
   
