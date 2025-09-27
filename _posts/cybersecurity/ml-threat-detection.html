@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Added reading progress bar for blog posts -->
+    <div class="reading-progress" id="reading-progress"></div>
+
     <!-- Panel Toggle Button -->
     <button class="nav-panel-toggle" id="nav-panel-toggle" aria-label="Toggle navigation panel">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -126,9 +129,59 @@
         </div>
     </nav>
 
+    <!-- Added mobile bottom navigation for blog posts -->
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+        <a href="../../index.html#home" class="mobile-nav-item" data-section="home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9,22 9,12 15,12 15,22"/>
+            </svg>
+            <span>Home</span>
+        </a>
+        <a href="../../index.html#about" class="mobile-nav-item" data-section="about">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>About</span>
+        </a>
+        <a href="../../index.html#blog" class="mobile-nav-item" data-section="blog">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14,2 14,8 20,8"/>
+            </svg>
+            <span>Blog</span>
+        </a>
+        <a href="../../index.html#projects" class="mobile-nav-item" data-section="projects">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            <span>Projects</span>
+        </a>
+        <button class="mobile-nav-item theme-toggle-mobile" id="theme-toggle-mobile" aria-label="Toggle theme">
+            <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+            <span>Theme</span>
+        </button>
+    </nav>
+
     <!-- Main Content -->
     <main class="main-content">
-        <article class="container" style="padding: 4rem 2rem; max-width: 800px;">
+        <article class="container blog-post-content" style="padding: 4rem 2rem; max-width: 800px;">
             <!-- Blog Header with Category Color -->
             <header style="border-top: 4px solid var(--cybersecurity-color); padding-top: 2rem; margin-bottom: 3rem;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
@@ -237,6 +290,31 @@
                 <p>
                     As threats continue to evolve, so too must our detection capabilities. The integration of ML into cybersecurity infrastructure is not just an option—it's a necessity for staying ahead of increasingly sophisticated adversaries.
                 </p>
+            </div>
+
+            <!-- Added related posts section -->
+            <div class="related-posts">
+                <h3>Related Posts</h3>
+                <div class="related-posts-grid">
+                    <div class="related-post-card">
+                        <span class="blog-category cybersecurity">Cyber Security</span>
+                        <h4>Building Scalable Security Infrastructure</h4>
+                        <p>Best practices for designing security systems that can handle millions of threats per day...</p>
+                        <a href="../engineering/scalable-security.html" class="blog-link">Read more</a>
+                    </div>
+                    <div class="related-post-card">
+                        <span class="blog-category cybersecurity">Cyber Security</span>
+                        <h4>Zero-Day Exploit Detection Techniques</h4>
+                        <p>Advanced methods for identifying previously unknown vulnerabilities and attack vectors...</p>
+                        <a href="zero-day-detection.html" class="blog-link">Read more</a>
+                    </div>
+                    <div class="related-post-card">
+                        <span class="blog-category malware">Malware Analysis</span>
+                        <h4>Reverse Engineering Modern Ransomware</h4>
+                        <p>A deep dive into the latest ransomware techniques and how to analyze their behavior patterns...</p>
+                        <a href="../malware/ransomware-analysis.html" class="blog-link">Read more</a>
+                    </div>
+                </div>
             </div>
 
             <!-- Back to Blog -->
