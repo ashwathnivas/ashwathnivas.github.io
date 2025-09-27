@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Cyber Security Developer</title>
-    <meta name="description" content="Cyber Security Developer & AV Industry Professional">
+    <title>Advanced Threat Detection with Machine Learning - Your Name</title>
+    <meta name="description" content="Exploring how ML algorithms can identify zero-day threats and improve detection accuracy in modern AV solutions">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Added panel toggle button for desktop -->
+    <!-- Panel Toggle Button -->
     <button class="nav-panel-toggle" id="nav-panel-toggle" aria-label="Toggle navigation panel">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 12h18m-9-9l9 9-9 9"/>
@@ -34,7 +34,7 @@
             
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#home" class="nav-link" data-section="home">
+                    <a href="../../index.html#home" class="nav-link">
                         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                             <polyline points="9,22 9,12 15,12 15,22"/>
@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#about" class="nav-link" data-section="about">
+                    <a href="../../index.html#about" class="nav-link">
                         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                             <circle cx="12" cy="7" r="4"/>
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#blog" class="nav-link" data-section="blog">
+                    <a href="../../index.html#blog" class="nav-link">
                         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
                             <polyline points="14,2 14,8 20,8"/>
@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#projects" class="nav-link" data-section="projects">
+                    <a href="../../index.html#projects" class="nav-link">
                         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                             <line x1="8" y1="21" x2="16" y2="21"/>
@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#tools" class="nav-link" data-section="tools">
+                    <a href="../../index.html#tools" class="nav-link">
                         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
                         </svg>
@@ -128,317 +128,127 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <div class="hero-badge">
-                            <span class="badge-icon">🛡️</span>
-                            <span>Cyber Security Developer</span>
-                        </div>
-                        <h1 class="hero-title">
-                            Securing the digital world,<br>
-                            <span class="highlight">one line of code at a time</span>
-                        </h1>
-                        <p class="hero-description">
-                            I'm a passionate cyber security developer working in the AV industry, 
-                            specializing in threat detection, malware analysis, and building robust 
-                            security solutions that protect millions of users worldwide.
-                        </p>
-                        <div class="hero-stats">
-                            <div class="stat">
-                                <span class="stat-number">5+</span>
-                                <span class="stat-label">Years Experience</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">50+</span>
-                                <span class="stat-label">Security Projects</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">1M+</span>
-                                <span class="stat-label">Threats Blocked</span>
-                            </div>
-                        </div>
-                        <div class="hero-actions">
-                            <a href="#blog" class="btn btn-primary">
-                                <span>Read My Blog</span>
-                                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m9 18 6-6-6-6"/>
-                                </svg>
-                            </a>
-                            <a href="#projects" class="btn btn-secondary">
-                                <span>View Projects</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="hero-visual">
-                        <div class="security-dashboard">
-                            <div class="dashboard-header">
-                                <div class="status-indicator active"></div>
-                                <span>Security Status: Active</span>
-                            </div>
-                            <div class="dashboard-content">
-                                <div class="metric">
-                                    <span class="metric-label">Threats Detected</span>
-                                    <span class="metric-value">1,247</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-label">Systems Protected</span>
-                                    <span class="metric-value">99.9%</span>
-                                </div>
-                                <div class="metric">
-                                    <span class="metric-label">Response Time</span>
-                                    <span class="metric-value">< 1ms</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">About Me</h2>
-                    <p class="section-subtitle">Defending digital infrastructure with code</p>
-                </div>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>
-                            As a cyber security developer in the AV industry, I specialize in creating 
-                            robust security solutions that protect against evolving threats. My expertise 
-                            spans malware analysis, threat detection algorithms, and building scalable 
-                            security infrastructure.
-                        </p>
-                        <p>
-                            I'm passionate about staying ahead of cybercriminals by developing innovative 
-                            detection methods and contributing to the security community through research 
-                            and open-source projects.
-                        </p>
-                        <div class="skills-grid">
-                            <div class="skill-item">
-                                <div class="skill-icon">🔍</div>
-                                <h4>Malware Analysis</h4>
-                                <p>Reverse engineering and behavioral analysis</p>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-icon">🛡️</div>
-                                <h4>Threat Detection</h4>
-                                <p>ML-based detection algorithms</p>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-icon">⚡</div>
-                                <h4>Security Architecture</h4>
-                                <p>Scalable security infrastructure</p>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-icon">🔬</div>
-                                <h4>Research & Development</h4>
-                                <p>Cutting-edge security research</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Blog Section -->
-        <section id="blog" class="blog-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Latest Posts</h2>
-                    <p class="section-subtitle">Insights from the cybersecurity frontlines</p>
+        <article class="container" style="padding: 4rem 2rem; max-width: 800px;">
+            <!-- Blog Header with Category Color -->
+            <header style="border-top: 4px solid var(--cybersecurity-color); padding-top: 2rem; margin-bottom: 3rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <span style="color: var(--text-muted); font-size: 0.875rem; font-family: 'JetBrains Mono', monospace;">Dec 15, 2024</span>
+                    <span style="padding: 0.25rem 0.75rem; background: var(--cybersecurity-color); color: white; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">Cyber Security</span>
                 </div>
                 
-                <!-- Search Widget -->
-                <div class="search-widget">
-                    <input type="text" id="search-input" placeholder="Search posts..." class="search-input">
-                    <button class="search-btn" id="search-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.35-4.35"></path>
+                <h1 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; color: var(--text-primary);">
+                    Advanced Threat Detection with Machine Learning
+                </h1>
+                
+                <!-- Social Sharing Buttons -->
+                <div class="blog-social-share">
+                    <a href="#" class="share-btn twitter" data-platform="twitter" data-url="https://yoursite.com/_posts/cybersecurity/ml-threat-detection.html" data-title="Advanced Threat Detection with Machine Learning" aria-label="Share on Twitter/X">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                         </svg>
-                    </button>
+                    </a>
+                    <a href="#" class="share-btn linkedin" data-platform="linkedin" data-url="https://yoursite.com/_posts/cybersecurity/ml-threat-detection.html" data-title="Advanced Threat Detection with Machine Learning" aria-label="Share on LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="share-btn bluesky" data-platform="bluesky" data-url="https://yoursite.com/_posts/cybersecurity/ml-threat-detection.html" data-title="Advanced Threat Detection with Machine Learning" aria-label="Share on Bluesky">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-2.67-.296-5.568.628-6.383 3.364C.378 17.902 0 22.862 0 23.55c0 .688.139 1.86.902 2.203.659.299 1.664.621 4.3-1.239C7.954 22.572 10.913 18.633 12 16.519c1.087 2.114 4.046 6.053 6.798 7.995 2.636 1.86 3.641 1.538 4.3 1.239.763-.343.902-1.515.902-2.203 0-.688-.378-5.648-.624-6.477-.815-2.736-3.713-3.66-6.383-3.364-.139.016-.277.034-.415.056.138-.017.276-.036.415-.056 2.67.296 5.568-.628 6.383-3.364.246-.829.624-5.789.624-6.479 0-.688-.139-1.86-.902-2.203-.659-.299-1.664-.621-4.3 1.239C16.046 4.747 13.087 8.686 12 10.8z"/>
+                        </svg>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Blog Content -->
+            <div style="line-height: 1.7; color: var(--text-secondary);">
+                <p style="font-size: 1.125rem; margin-bottom: 2rem; color: var(--text-primary);">
+                    In the rapidly evolving landscape of cybersecurity, traditional signature-based detection methods are increasingly inadequate against sophisticated threats. This article explores how machine learning algorithms are revolutionizing threat detection in modern antivirus solutions.
+                </p>
+
+                <h2 style="color: var(--text-primary); margin: 2rem 0 1rem 0;">The Evolution of Threat Detection</h2>
+                <p>
+                    Traditional antivirus solutions rely heavily on signature-based detection, which requires prior knowledge of malware patterns. However, with the rise of polymorphic malware, zero-day exploits, and advanced persistent threats (APTs), this approach has significant limitations.
+                </p>
+
+                <p>
+                    Machine learning offers a paradigm shift by enabling systems to identify malicious behavior patterns without relying solely on known signatures. This approach allows for the detection of previously unseen threats based on behavioral analysis and statistical anomalies.
+                </p>
+
+                <h2 style="color: var(--text-primary); margin: 2rem 0 1rem 0;">Key ML Techniques in Threat Detection</h2>
+                
+                <h3 style="color: var(--text-primary); margin: 1.5rem 0 0.5rem 0;">1. Supervised Learning</h3>
+                <p>
+                    Supervised learning algorithms are trained on labeled datasets containing both malicious and benign samples. Popular algorithms include:
+                </p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li><strong>Random Forest:</strong> Excellent for feature importance analysis and handling large datasets</li>
+                    <li><strong>Support Vector Machines (SVM):</strong> Effective for high-dimensional data classification</li>
+                    <li><strong>Neural Networks:</strong> Capable of learning complex patterns in data</li>
+                </ul>
+
+                <h3 style="color: var(--text-primary); margin: 1.5rem 0 0.5rem 0;">2. Unsupervised Learning</h3>
+                <p>
+                    These algorithms detect anomalies without prior knowledge of what constitutes malicious behavior:
+                </p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li><strong>Clustering algorithms:</strong> Group similar behaviors to identify outliers</li>
+                    <li><strong>Autoencoders:</strong> Detect anomalies by learning normal behavior patterns</li>
+                    <li><strong>Isolation Forest:</strong> Efficiently isolates anomalies in large datasets</li>
+                </ul>
+
+                <h2 style="color: var(--text-primary); margin: 2rem 0 1rem 0;">Implementation Challenges</h2>
+                <p>
+                    While ML-based threat detection offers significant advantages, several challenges must be addressed:
+                </p>
+
+                <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--radius); margin: 1.5rem 0; border-left: 4px solid var(--cybersecurity-color);">
+                    <h4 style="color: var(--text-primary); margin-bottom: 1rem;">Key Challenges:</h4>
+                    <ul style="margin: 0; padding-left: 1.5rem;">
+                        <li><strong>False Positives:</strong> Balancing sensitivity with specificity</li>
+                        <li><strong>Adversarial Attacks:</strong> Malware designed to evade ML detection</li>
+                        <li><strong>Feature Engineering:</strong> Selecting relevant features for optimal performance</li>
+                        <li><strong>Real-time Processing:</strong> Ensuring low latency in production environments</li>
+                    </ul>
                 </div>
 
-                <!-- Categories -->
-                <div class="categories">
-                    <button class="category-btn active" data-category="all">All</button>
-                    <button class="category-btn" data-category="engineering">Engineering</button>
-                    <button class="category-btn" data-category="cybersecurity">Cyber Security</button>
-                    <button class="category-btn" data-category="malware">Malware Analysis</button>
-                    <button class="category-btn" data-category="research">Research</button>
-                </div>
+                <h2 style="color: var(--text-primary); margin: 2rem 0 1rem 0;">Future Directions</h2>
+                <p>
+                    The future of ML-based threat detection lies in several emerging areas:
+                </p>
 
-                <!-- Blog Posts Grid -->
-                <div class="blog-grid" id="blog-grid">
-                    <div class="blog-card" data-category="cybersecurity">
-                        <div class="blog-card-header cybersecurity">
-                            <span class="blog-date">Dec 15, 2024</span>
-                            <span class="blog-category">Cyber Security</span>
-                        </div>
-                        <h3 class="blog-title">Advanced Threat Detection with Machine Learning</h3>
-                        <p class="blog-excerpt">Exploring how ML algorithms can identify zero-day threats and improve detection accuracy in modern AV solutions...</p>
-                        <a href="_posts/cybersecurity/ml-threat-detection.html" class="blog-link">Read more</a>
-                    </div>
+                <p>
+                    <strong>Federated Learning:</strong> Enables collaborative learning across organizations without sharing sensitive data, improving detection capabilities while maintaining privacy.
+                </p>
 
-                    <div class="blog-card" data-category="malware">
-                        <div class="blog-card-header malware">
-                            <span class="blog-date">Dec 10, 2024</span>
-                            <span class="blog-category">Malware Analysis</span>
-                        </div>
-                        <h3 class="blog-title">Reverse Engineering Modern Ransomware</h3>
-                        <p class="blog-excerpt">A deep dive into the latest ransomware techniques and how to analyze their behavior patterns...</p>
-                        <a href="_posts/malware/ransomware-analysis.html" class="blog-link">Read more</a>
-                    </div>
+                <p>
+                    <strong>Explainable AI:</strong> Making ML decisions interpretable to security analysts, crucial for understanding why certain files or behaviors are flagged as malicious.
+                </p>
 
-                    <div class="blog-card" data-category="engineering">
-                        <div class="blog-card-header engineering">
-                            <span class="blog-date">Dec 5, 2024</span>
-                            <span class="blog-category">Engineering</span>
-                        </div>
-                        <h3 class="blog-title">Building Scalable Security Infrastructure</h3>
-                        <p class="blog-excerpt">Best practices for designing security systems that can handle millions of threats per day...</p>
-                        <a href="_posts/engineering/scalable-security.html" class="blog-link">Read more</a>
-                    </div>
-                </div>
+                <p>
+                    <strong>Continuous Learning:</strong> Systems that adapt and learn from new threats in real-time, maintaining effectiveness against evolving attack vectors.
+                </p>
+
+                <h2 style="color: var(--text-primary); margin: 2rem 0 1rem 0;">Conclusion</h2>
+                <p>
+                    Machine learning represents a fundamental shift in how we approach cybersecurity. By leveraging the power of data and statistical analysis, we can build more robust, adaptive, and effective threat detection systems. However, success requires careful consideration of implementation challenges and continuous refinement of our approaches.
+                </p>
+
+                <p>
+                    As threats continue to evolve, so too must our detection capabilities. The integration of ML into cybersecurity infrastructure is not just an option—it's a necessity for staying ahead of increasingly sophisticated adversaries.
+                </p>
             </div>
-        </section>
 
-        <!-- Updated Projects section with GitHub links -->
-        <section id="projects" class="projects-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Featured Projects</h2>
-                    <p class="section-subtitle">Security solutions that make a difference</p>
-                </div>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🛡️</div>
-                            <h3>ThreatGuard AI</h3>
-                        </div>
-                        <p>ML-powered threat detection system with 99.8% accuracy rate</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">Docker</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/yourusername/threatguard-ai" class="project-link" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                GitHub
-                            </a>
-                            <a href="#" class="project-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                    <polyline points="15,3 21,3 21,9"/>
-                                    <line x1="10" y1="14" x2="21" y2="3"/>
-                                </svg>
-                                Live Demo
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🔍</div>
-                            <h3>MalwareScope</h3>
-                        </div>
-                        <p>Automated malware analysis platform for security researchers</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">C++</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/yourusername/malwarescope" class="project-link" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                GitHub
-                            </a>
-                            <a href="#" class="project-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                    <polyline points="15,3 21,3 21,9"/>
-                                    <line x1="10" y1="14" x2="21" y2="3"/>
-                                </svg>
-                                Live Demo
-                            </a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">⚡</div>
-                            <h3>SecureAPI Gateway</h3>
-                        </div>
-                        <p>High-performance API security gateway with real-time threat blocking</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Go</span>
-                            <span class="tech-tag">Redis</span>
-                            <span class="tech-tag">Kubernetes</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/yourusername/secure-api-gateway" class="project-link" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                GitHub
-                            </a>
-                            <a href="#" class="project-link">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                    <polyline points="15,3 21,3 21,9"/>
-                                    <line x1="10" y1="14" x2="21" y2="3"/>
-                                </svg>
-                                Live Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <!-- Back to Blog -->
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                <a href="../../index.html#blog" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-primary); text-decoration: none; font-weight: 600; transition: var(--transition);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                    Back to Blog
+                </a>
             </div>
-        </section>
-
-        <!-- Free Tools Section -->
-        <section id="tools" class="tools-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Free Security Tools</h2>
-                    <p class="section-subtitle">Open-source tools for the security community</p>
-                </div>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-header">
-                            <h3>Hash Analyzer</h3>
-                            <span class="tool-status">Live</span>
-                        </div>
-                        <p>Analyze file hashes against multiple threat intelligence databases</p>
-                        <a href="#" class="tool-link">Try Tool →</a>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-header">
-                            <h3>URL Scanner</h3>
-                            <span class="tool-status">Live</span>
-                        </div>
-                        <p>Scan URLs for malicious content and phishing attempts</p>
-                        <a href="#" class="tool-link">Try Tool →</a>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-header">
-                            <h3>Network Analyzer</h3>
-                            <span class="tool-status">Beta</span>
-                        </div>
-                        <p>Analyze network traffic patterns for suspicious activity</p>
-                        <a href="#" class="tool-link">Try Tool →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </article>
     </main>
 
     <script src="../../assets/js/main.js"></script>
