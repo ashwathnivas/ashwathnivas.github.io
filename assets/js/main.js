@@ -241,9 +241,9 @@ class BottomNavManager {
   // Blog Manager with Enhanced Search and Category Support
   class BlogManager {
     constructor() {
-      this.blogGrid = document.getElementById("blog-grid")
-      this.categoryBtns = document.querySelectorAll(".category-btn")
-      this.searchInput = document.getElementById("search-input")
+      this.blogGrid = document.getElementById("blog-grid") || document.getElementById("blog-posts-grid")
+      this.categoryBtns = document.querySelectorAll(".category-btn, .filter-btn")
+      this.searchInput = document.getElementById("search-input") || document.getElementById("blog-search")
       this.searchBtn = document.getElementById("search-btn")
       this.allPosts = []
       this.currentCategory = "all"
@@ -253,9 +253,11 @@ class BottomNavManager {
     }
   
     init() {
-      this.loadPosts()
-      this.setupCategoryFilters()
-      this.setupSearch()
+      if (this.blogGrid) {
+        this.loadPosts()
+        this.setupCategoryFilters()
+        this.setupSearch()
+      }
     }
   
     loadPosts() {
@@ -278,13 +280,17 @@ class BottomNavManager {
     }
   
     setupSearch() {
+      if (!this.searchInput) return
+  
       const performSearch = () => {
         this.currentSearch = this.searchInput.value.toLowerCase().trim()
         this.filterAndSearch()
       }
   
       this.searchInput.addEventListener("input", debounce(performSearch, 200))
-      this.searchBtn.addEventListener("click", performSearch)
+      if (this.searchBtn) {
+        this.searchBtn.addEventListener("click", performSearch)
+      }
       this.searchInput.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
           performSearch()
@@ -303,9 +309,9 @@ class BottomNavManager {
       // Filter by search (including tags)
       if (this.currentSearch) {
         filteredPosts = filteredPosts.filter((post) => {
-          const title = post.querySelector(".blog-title").textContent.toLowerCase()
-          const excerpt = post.querySelector(".blog-excerpt").textContent.toLowerCase()
-          const category = post.querySelector(".blog-category").textContent.toLowerCase()
+          const title = post.querySelector("h2, .blog-title")?.textContent.toLowerCase() || ""
+          const excerpt = post.querySelector("p, .blog-excerpt")?.textContent.toLowerCase() || ""
+          const category = post.querySelector(".blog-category")?.textContent.toLowerCase() || ""
           const tags = post.dataset.tags?.toLowerCase() || ""
   
           return (
@@ -410,7 +416,7 @@ class BottomNavManager {
   class ProjectManager {
     constructor() {
       this.projectsGrid = document.getElementById("projects-grid")
-      this.categoryBtns = document.querySelectorAll(".project-category-btn")
+      this.categoryBtns = document.querySelectorAll(".project-category-btn, .filter-btn")
       this.allProjects = []
       this.currentCategory = "all"
   
@@ -418,8 +424,10 @@ class BottomNavManager {
     }
   
     init() {
-      this.loadProjects()
-      this.setupCategoryFilters()
+      if (this.projectsGrid) {
+        this.loadProjects()
+        this.setupCategoryFilters()
+      }
     }
   
     loadProjects() {
@@ -576,7 +584,7 @@ class BottomNavManager {
     }
   }
   
-  // Reading Progress Manager
+  // Reading Progress Manager with better blog post detection
   class ReadingProgressManager {
     constructor() {
       this.progressBar = document.getElementById("reading-progress")
@@ -586,6 +594,8 @@ class BottomNavManager {
     init() {
       if (this.progressBar) {
         this.setupScrollListener()
+        // Initialize progress on page load
+        this.updateProgress()
       }
     }
   
@@ -603,23 +613,102 @@ class BottomNavManager {
         window.location.pathname.includes("_posts/") ||
         document.querySelector(".blog-post-content") ||
         document.querySelector("article") ||
-        document.querySelector(".blog-section")
+        document.querySelector(".blog-section") ||
+        document.body.classList.contains("blog-post")
   
       if (!isBlogPost) {
-        this.progressBar.classList.remove("visible")
+        this.progressBar.style.display = "none"
         return
       }
   
+      // Show progress bar for blog posts
+      this.progressBar.style.display = "block"
+  
       const scrollTop = window.pageYOffset
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const scrollPercent = (scrollTop / docHeight) * 100
+      const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100)
   
-      this.progressBar.style.width = `${Math.min(scrollPercent, 100)}%`
+      this.progressBar.style.width = `${scrollPercent}%`
   
-      if (scrollPercent > 5) {
+      if (scrollPercent > 1) {
         this.progressBar.classList.add("visible")
       } else {
         this.progressBar.classList.remove("visible")
+      }
+    }
+  }
+  
+  // Dynamic Blog Navigation Manager
+  class DynamicBlogNavigationManager {
+    constructor() {
+      this.blogPosts = [
+        {
+          title: "Zero-Day Exploit Detection Techniques",
+          url: "zero-day-detection.html",
+          category: "cybersecurity",
+          date: "2024-12-10",
+        },
+        {
+          title: "Advanced Threat Detection with Machine Learning",
+          url: "ml-threat-detection.html",
+          category: "cybersecurity",
+          date: "2024-12-15",
+        },
+        {
+          title: "AI-Powered Network Security Monitoring",
+          url: "ai-network-security.html",
+          category: "cybersecurity",
+          date: "2024-12-20",
+        },
+        {
+          title: "Reverse Engineering Modern Ransomware",
+          url: "../malware/ransomware-analysis.html",
+          category: "malware",
+          date: "2024-11-28",
+        },
+        {
+          title: "Dynamic Malware Analysis in Sandboxed Environments",
+          url: "../malware/dynamic-analysis.html",
+          category: "malware",
+          date: "2024-11-20",
+        },
+      ]
+      this.init()
+    }
+  
+    init() {
+      if (window.location.pathname.includes("_posts/")) {
+        this.setupDynamicNavigation()
+      }
+    }
+  
+    setupDynamicNavigation() {
+      const currentUrl = window.location.pathname.split("/").pop()
+      const currentPostIndex = this.blogPosts.findIndex((post) => post.url.includes(currentUrl))
+  
+      if (currentPostIndex === -1) return
+  
+      const prevPost = currentPostIndex > 0 ? this.blogPosts[currentPostIndex - 1] : null
+      const nextPost = currentPostIndex < this.blogPosts.length - 1 ? this.blogPosts[currentPostIndex + 1] : null
+  
+      // Update previous post link
+      const prevPostLink = document.getElementById("prev-post-link")
+      if (prevPostLink && prevPost) {
+        prevPostLink.href = prevPost.url
+        prevPostLink.title = prevPost.title
+        prevPostLink.style.display = "inline-flex"
+      } else if (prevPostLink) {
+        prevPostLink.style.display = "none"
+      }
+  
+      // Update next post link
+      const nextPostLink = document.getElementById("next-post-link")
+      if (nextPostLink && nextPost) {
+        nextPostLink.href = nextPost.url
+        nextPostLink.title = nextPost.title
+        nextPostLink.style.display = "inline-flex"
+      } else if (nextPostLink) {
+        nextPostLink.style.display = "none"
       }
     }
   }
@@ -823,6 +912,7 @@ class BottomNavManager {
     new ReadingProgressManager()
     new RelatedPostsManager()
     new CodeHighlightManager()
+    new DynamicBlogNavigationManager() // Added dynamic blog navigation
   
     console.log("[v0] Cyber Security Portfolio with Mac-style dock navigation initialized successfully")
   })
@@ -849,6 +939,7 @@ class BottomNavManager {
     ReadingProgressManager,
     RelatedPostsManager,
     CodeHighlightManager,
+    DynamicBlogNavigationManager, // Added to exports
     debounce,
   }
   

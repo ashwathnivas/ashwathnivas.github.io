@@ -331,21 +331,25 @@ print(feature_importance.head(10))</code></pre>
                 </div>
             </div>
 
-             Added previous/next post navigation 
+             Made previous/next navigation dynamic with proper structure 
             <nav style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
-                <a href="previous-post.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-primary); text-decoration: none; font-weight: 600; transition: var(--transition);">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;">
-                        <path d="m15 18-6-6 6-6"/>
-                    </svg>
-                    Previous Post
-                </a>
+                <div class="post-nav-item prev-post">
+                    <a href="#" id="prev-post-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-primary); text-decoration: none; font-weight: 600; transition: var(--transition);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Previous Post</span>
+                    </a>
+                </div>
                 <a href="../../index.html#blog" style="color: var(--text-muted); text-decoration: none; font-weight: 500;">Back to Blog</a>
-                <a href="next-post.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-primary); text-decoration: none; font-weight: 600; transition: var(--transition);">
-                    Next Post
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;">
-                        <path d="m9 18 6-6-6-6"/>
-                    </svg>
-                </a>
+                <div class="post-nav-item next-post">
+                    <a href="#" id="next-post-link" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-primary); text-decoration: none; font-weight: 600; transition: var(--transition);">
+                        <span>Next Post</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </a>
+                </div>
             </nav>
         </article>
     </main>
