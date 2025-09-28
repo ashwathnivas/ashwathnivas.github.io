@@ -3,42 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Cyber Security Developer</title>
+    <title>Ashwath Nivas - Cyber Security Developer</title>
     <meta name="description" content="Cyber Security Developer & AV Industry Professional">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+     Added Prism.js for syntax highlighting 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Reading progress bar for blog posts -->
+     Reading progress bar for blog posts 
     <div class="reading-progress" id="reading-progress"></div>
 
-    <!-- Replaced left panel with unified bottom navigation for all devices -->
-    <!-- Bottom Navigation for all devices -->
-    <nav class="bottom-nav" id="bottom-nav">
-        <a href="#home" class="nav-item" data-section="home">
+     Updated navigation to Mac-style floating dock for desktop 
+     Mac-style Floating Dock Navigation 
+    <nav class="floating-dock" id="floating-dock">
+        <div class="dock-container">
+            <a href="#home" class="dock-item" data-section="home" title="Home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9,22 9,12 15,12 15,22"/>
+                </svg>
+            </a>
+            <a href="#blog" class="dock-item" data-section="blog" title="Blog">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                    <polyline points="14,2 14,8 20,8"/>
+                </svg>
+            </a>
+            <a href="#projects" class="dock-item" data-section="projects" title="Projects">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+            </a>
+            <a href="#tools" class="dock-item" data-section="tools" title="Tools">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+            </a>
+            <a href="#about" class="dock-item" data-section="about" title="About">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+            </a>
+            <button class="dock-item theme-toggle" id="theme-toggle" title="Toggle Theme">
+                <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+     Mobile Bottom Navigation 
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+        <a href="#home" class="mobile-nav-item" data-section="home">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                 <polyline points="9,22 9,12 15,12 15,22"/>
             </svg>
             <span>Home</span>
         </a>
-        <a href="#about" class="nav-item" data-section="about">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-            </svg>
-            <span>About</span>
-        </a>
-        <a href="#blog" class="nav-item" data-section="blog">
+        <a href="#blog" class="mobile-nav-item" data-section="blog">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
                 <polyline points="14,2 14,8 20,8"/>
             </svg>
             <span>Blog</span>
         </a>
-        <a href="#projects" class="nav-item" data-section="projects">
+        <a href="#projects" class="mobile-nav-item" data-section="projects">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                 <line x1="8" y1="21" x2="16" y2="21"/>
@@ -46,13 +93,20 @@
             </svg>
             <span>Projects</span>
         </a>
-        <a href="#tools" class="nav-item" data-section="tools">
+        <a href="#tools" class="mobile-nav-item" data-section="tools">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
             </svg>
             <span>Tools</span>
         </a>
-        <button class="nav-item theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <a href="#about" class="mobile-nav-item" data-section="about">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>About</span>
+        </a>
+        <button class="mobile-nav-item theme-toggle" id="mobile-theme-toggle">
             <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="5"/>
                 <line x1="12" y1="1" x2="12" y2="3"/>
@@ -71,9 +125,10 @@
         </button>
     </nav>
 
-    <!-- Main Content -->
+     Main Content 
     <main class="main-content">
-        <!-- Hero Section -->
+         Updated hero section - removed stats, kept social media 
+         Hero Section 
         <section id="home" class="hero">
             <div class="container">
                 <div class="hero-content">
@@ -82,29 +137,16 @@
                             <span class="badge-icon">🛡️</span>
                             <span>Cyber Security Developer</span>
                         </div>
+                         Added rotating showcase of expertise areas 
                         <h1 class="hero-title">
                             Securing the digital world,<br>
-                            <span class="highlight">one line of code at a time</span>
+                            <span class="highlight rotating-text" id="rotating-text">one line of code at a time</span>
                         </h1>
                         <p class="hero-description">
                             I'm a passionate cyber security developer working in the AV industry, 
                             specializing in threat detection, malware analysis, and building robust 
                             security solutions that protect millions of users worldwide.
                         </p>
-                        <div class="hero-stats">
-                            <div class="stat">
-                                <span class="stat-number">5+</span>
-                                <span class="stat-label">Years Experience</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">50+</span>
-                                <span class="stat-label">Security Projects</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">1M+</span>
-                                <span class="stat-label">Threats Blocked</span>
-                            </div>
-                        </div>
                         <div class="hero-actions">
                             <a href="#blog" class="btn btn-primary">
                                 <span>Read My Blog</span>
@@ -116,7 +158,7 @@
                                 <span>View Projects</span>
                             </a>
                         </div>
-                        <!-- Added social links to hero section -->
+                         Social media links in hero section 
                         <div class="hero-social">
                             <a href="#" class="social-link" aria-label="LinkedIn">
                                 <svg viewBox="0 0 24 24" fill="currentColor">
@@ -142,67 +184,20 @@
                             </a>
                         </div>
                     </div>
-                    <!-- Removed Security Status box as requested -->
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">About Me</h2>
-                    <p class="section-subtitle">Defending digital infrastructure with code</p>
-                </div>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>
-                            As a cyber security developer in the AV industry, I specialize in creating 
-                            robust security solutions that protect against evolving threats. My expertise 
-                            spans malware analysis, threat detection algorithms, and building scalable 
-                            security infrastructure.
-                        </p>
-                        <p>
-                            I'm passionate about staying ahead of cybercriminals by developing innovative 
-                            detection methods and contributing to the security community through research 
-                            and open-source projects.
-                        </p>
-                        <div class="skills-grid">
-                            <div class="skill-item">
-                                <div class="skill-icon">🔍</div>
-                                <h4>Malware Analysis</h4>
-                                <p>Reverse engineering and behavioral analysis</p>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-icon">🛡️</div>
-                                <h4>Threat Detection</h4>
-                                <p>ML-based detection algorithms</p>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-icon">⚡</div>
-                                <h4>Security Architecture</h4>
-                                <p>Scalable security infrastructure</p>
-                            </div>
-                            <div class="skill-item">
-                                <div class="skill-icon">🔬</div>
-                                <h4>Research & Development</h4>
-                                <p>Cutting-edge security research</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Blog Section -->
+         Featured Blog Posts approach with link to full blog page 
+         Blog Section 
         <section id="blog" class="blog-section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Latest Posts</h2>
-                    <p class="section-subtitle">Insights from the cybersecurity frontlines</p>
+                    <h2 class="section-title">Featured Posts</h2>
+                    <p class="section-subtitle">Latest insights from the cybersecurity frontlines</p>
                 </div>
                 
-                <!-- Enhanced search widget -->
+                 Enhanced search widget 
                 <div class="search-widget">
                     <input type="text" id="search-input" placeholder="Search posts by title, content, or tags..." class="search-input">
                     <button class="search-btn" id="search-btn">
@@ -213,7 +208,7 @@
                     </button>
                 </div>
 
-                <!-- Categories -->
+                 Categories 
                 <div class="categories">
                     <button class="category-btn active" data-category="all">All</button>
                     <button class="category-btn" data-category="engineering">Engineering</button>
@@ -222,7 +217,7 @@
                     <button class="category-btn" data-category="research">Research</button>
                 </div>
 
-                <!-- Blog Posts Grid -->
+                 Featured Blog Posts Grid 
                 <div class="blog-grid" id="blog-grid">
                     <div class="blog-card" data-category="cybersecurity" data-tags="machine learning, ai, threat detection">
                         <div class="blog-card-header cybersecurity">
@@ -269,18 +264,38 @@
                         <a href="_posts/engineering/scalable-security.html" class="blog-link">Read more</a>
                     </div>
                 </div>
+
+                 Link to full blog page 
+                <div class="section-footer">
+                    <a href="/blog.html" class="btn btn-secondary">
+                        <span>View All Posts</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <!-- Projects section with GitHub links -->
+         Featured projects with category filtering 
+         Projects section 
         <section id="projects" class="projects-section">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Featured Projects</h2>
                     <p class="section-subtitle">Security solutions that make a difference</p>
                 </div>
-                <div class="projects-grid">
-                    <div class="project-card">
+
+                 Project Categories 
+                <div class="project-categories">
+                    <button class="project-category-btn active" data-category="all">All Projects</button>
+                    <button class="project-category-btn" data-category="security">Security Tools</button>
+                    <button class="project-category-btn" data-category="analysis">Analysis Tools</button>
+                    <button class="project-category-btn" data-category="infrastructure">Infrastructure</button>
+                </div>
+
+                <div class="projects-grid" id="projects-grid">
+                    <div class="project-card" data-category="security">
                         <div class="project-header">
                             <div class="project-icon">🛡️</div>
                             <h3>ThreatGuard AI</h3>
@@ -292,7 +307,7 @@
                             <span class="tech-tag">Docker</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/yourusername/threatguard-ai" class="project-link" target="_blank" rel="noopener">
+                            <a href="https://github.com/ashwathnivas/threatguard-ai" class="project-link" target="_blank" rel="noopener">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                                 </svg>
@@ -308,7 +323,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-category="analysis">
                         <div class="project-header">
                             <div class="project-icon">🔍</div>
                             <h3>MalwareScope</h3>
@@ -320,7 +335,7 @@
                             <span class="tech-tag">PostgreSQL</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/yourusername/malwarescope" class="project-link" target="_blank" rel="noopener">
+                            <a href="https://github.com/ashwathnivas/malwarescope" class="project-link" target="_blank" rel="noopener">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                                 </svg>
@@ -336,7 +351,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card" data-category="infrastructure">
                         <div class="project-header">
                             <div class="project-icon">⚡</div>
                             <h3>SecureAPI Gateway</h3>
@@ -348,7 +363,7 @@
                             <span class="tech-tag">Kubernetes</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/yourusername/secure-api-gateway" class="project-link" target="_blank" rel="noopener">
+                            <a href="https://github.com/ashwathnivas/secure-api-gateway" class="project-link" target="_blank" rel="noopener">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                                 </svg>
@@ -365,10 +380,21 @@
                         </div>
                     </div>
                 </div>
+
+                 Link to full projects page 
+                <div class="section-footer">
+                    <a href="/projects.html" class="btn btn-secondary">
+                        <span>View All Projects</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <!-- Free Tools Section -->
+         Added Network Defense and File Sanity checker sections 
+         Free Tools Section 
         <section id="tools" class="tools-section">
             <div class="container">
                 <div class="section-header">
@@ -394,6 +420,22 @@
                     </div>
                     <div class="tool-card">
                         <div class="tool-header">
+                            <h3>Network Defense</h3>
+                            <span class="tool-status">Beta</span>
+                        </div>
+                        <p>Monitor and analyze network traffic for suspicious patterns and intrusion attempts</p>
+                        <a href="#" class="tool-link">Try Tool →</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <h3>File Sanity Checker</h3>
+                            <span class="tool-status">Live</span>
+                        </div>
+                        <p>Comprehensive file integrity and security validation tool for suspicious files</p>
+                        <a href="#" class="tool-link">Try Tool →</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-header">
                             <h3>Network Analyzer</h3>
                             <span class="tool-status">Beta</span>
                         </div>
@@ -403,8 +445,60 @@
                 </div>
             </div>
         </section>
+
+         Moved About section to last position 
+         About Section 
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Defending digital infrastructure with code</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            As a cyber security developer in the AV industry, I specialize in creating 
+                            robust security solutions that protect against evolving threats. My expertise 
+                            spans malware analysis, threat detection algorithms, and building scalable 
+                            security infrastructure.
+                        </p>
+                        <p>
+                            I'm passionate about staying ahead of cybercriminals by developing innovative 
+                            detection methods and contributing to the security community through research 
+                            and open-source projects.
+                        </p>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <div class="skill-icon">🔍</div>
+                                <h4>Malware Analysis</h4>
+                                <p>Reverse engineering and behavioral analysis</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🛡️</div>
+                                <h4>Threat Detection</h4>
+                                <p>ML-based detection algorithms</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">⚡</div>
+                                <h4>Security Architecture</h4>
+                                <p>Scalable security infrastructure</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🔬</div>
+                                <h4>Research & Development</h4>
+                                <p>Cutting-edge security research</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
+     Added Prism.js for syntax highlighting 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

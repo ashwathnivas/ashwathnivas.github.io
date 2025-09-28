@@ -63,13 +63,138 @@ class BottomNavManager {
     }
   }
   
+  // Floating Dock Manager (Desktop)
+  class FloatingDockManager {
+    constructor() {
+      this.floatingDock = document.getElementById("floating-dock")
+      this.dockItems = document.querySelectorAll(".floating-dock .dock-item")
+      this.sections = document.querySelectorAll("section[id]")
+  
+      this.init()
+    }
+  
+    init() {
+      this.setupNavigation()
+      this.setupScrollSpy()
+    }
+  
+    setupNavigation() {
+      this.dockItems.forEach((item) => {
+        if (!item.classList.contains("theme-toggle")) {
+          item.addEventListener("click", (e) => {
+            e.preventDefault()
+            const targetId = item.getAttribute("href")
+            const targetSection = document.querySelector(targetId)
+  
+            if (targetSection) {
+              const offsetTop = targetSection.offsetTop - 2 * 16 // 2rem offset
+              window.scrollTo({
+                top: offsetTop,
+                behavior: "smooth",
+              })
+            }
+          })
+        }
+      })
+    }
+  
+    setupScrollSpy() {
+      const observerOptions = {
+        threshold: 0.3,
+        rootMargin: "-20% 0px -70% 0px",
+      }
+  
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id")
+            this.updateActiveNav(id)
+          }
+        })
+      }, observerOptions)
+  
+      this.sections.forEach((section) => observer.observe(section))
+    }
+  
+    updateActiveNav(activeId) {
+      this.dockItems.forEach((item) => {
+        item.classList.remove("active")
+        if (item.getAttribute("href") === `#${activeId}`) {
+          item.classList.add("active")
+        }
+      })
+    }
+  }
+  
+  // Mobile Bottom Navigation Manager
+  class MobileBottomNavManager {
+    constructor() {
+      this.mobileBottomNav = document.getElementById("mobile-bottom-nav")
+      this.mobileNavItems = document.querySelectorAll(".mobile-bottom-nav .mobile-nav-item")
+      this.sections = document.querySelectorAll("section[id]")
+  
+      this.init()
+    }
+  
+    init() {
+      this.setupNavigation()
+      this.setupScrollSpy()
+    }
+  
+    setupNavigation() {
+      this.mobileNavItems.forEach((item) => {
+        if (!item.classList.contains("theme-toggle")) {
+          item.addEventListener("click", (e) => {
+            e.preventDefault()
+            const targetId = item.getAttribute("href")
+            const targetSection = document.querySelector(targetId)
+  
+            if (targetSection) {
+              const offsetTop = targetSection.offsetTop - 2 * 16 // 2rem offset
+              window.scrollTo({
+                top: offsetTop,
+                behavior: "smooth",
+              })
+            }
+          })
+        }
+      })
+    }
+  
+    setupScrollSpy() {
+      const observerOptions = {
+        threshold: 0.3,
+        rootMargin: "-20% 0px -70% 0px",
+      }
+  
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id")
+            this.updateActiveNav(id)
+          }
+        })
+      }, observerOptions)
+  
+      this.sections.forEach((section) => observer.observe(section))
+    }
+  
+    updateActiveNav(activeId) {
+      this.mobileNavItems.forEach((item) => {
+        item.classList.remove("active")
+        if (item.getAttribute("href") === `#${activeId}`) {
+          item.classList.add("active")
+        }
+      })
+    }
+  }
+  
   // Theme Manager
   class ThemeManager {
     constructor() {
       this.theme = localStorage.getItem("theme") || "dark" // Default to dark
       this.themeToggle = document.getElementById("theme-toggle")
-      this.sunIcon = this.themeToggle?.querySelector(".sun-icon")
-      this.moonIcon = this.themeToggle?.querySelector(".moon-icon")
+      this.mobileThemeToggle = document.getElementById("mobile-theme-toggle")
   
       this.init()
     }
@@ -77,6 +202,7 @@ class BottomNavManager {
     init() {
       this.setTheme(this.theme)
       this.themeToggle?.addEventListener("click", () => this.toggleTheme())
+      this.mobileThemeToggle?.addEventListener("click", () => this.toggleTheme())
     }
   
     setTheme(theme) {
@@ -84,13 +210,24 @@ class BottomNavManager {
       document.documentElement.setAttribute("data-theme", theme)
       localStorage.setItem("theme", theme)
   
-      if (this.sunIcon && this.moonIcon) {
+      // Update both desktop and mobile theme toggles
+      this.updateThemeIcons(this.themeToggle, theme)
+      this.updateThemeIcons(this.mobileThemeToggle, theme)
+    }
+  
+    updateThemeIcons(toggle, theme) {
+      if (!toggle) return
+  
+      const sunIcon = toggle.querySelector(".sun-icon")
+      const moonIcon = toggle.querySelector(".moon-icon")
+  
+      if (sunIcon && moonIcon) {
         if (theme === "light") {
-          this.sunIcon.style.opacity = "1"
-          this.moonIcon.style.opacity = "0"
+          sunIcon.style.opacity = "1"
+          moonIcon.style.opacity = "0"
         } else {
-          this.sunIcon.style.opacity = "0"
-          this.moonIcon.style.opacity = "1"
+          sunIcon.style.opacity = "0"
+          moonIcon.style.opacity = "1"
         }
       }
     }
@@ -231,6 +368,107 @@ class BottomNavManager {
     }
   }
   
+  // Rotating Text Manager
+  class RotatingTextManager {
+    constructor() {
+      this.rotatingText = document.getElementById("rotating-text")
+      this.texts = [
+        "one line of code at a time",
+        "through advanced threat detection",
+        "with machine learning algorithms",
+        "by building robust defenses",
+        "using cutting-edge research",
+      ]
+      this.currentIndex = 0
+  
+      this.init()
+    }
+  
+    init() {
+      if (this.rotatingText) {
+        this.startRotation()
+      }
+    }
+  
+    startRotation() {
+      setInterval(() => {
+        this.currentIndex = (this.currentIndex + 1) % this.texts.length
+        this.updateText()
+      }, 3000) // Change every 3 seconds
+    }
+  
+    updateText() {
+      this.rotatingText.style.opacity = "0"
+      setTimeout(() => {
+        this.rotatingText.textContent = this.texts[this.currentIndex]
+        this.rotatingText.style.opacity = "1"
+      }, 300)
+    }
+  }
+  
+  // Project Manager
+  class ProjectManager {
+    constructor() {
+      this.projectsGrid = document.getElementById("projects-grid")
+      this.categoryBtns = document.querySelectorAll(".project-category-btn")
+      this.allProjects = []
+      this.currentCategory = "all"
+  
+      this.init()
+    }
+  
+    init() {
+      this.loadProjects()
+      this.setupCategoryFilters()
+    }
+  
+    loadProjects() {
+      this.allProjects = Array.from(document.querySelectorAll(".project-card"))
+      this.showProjects(this.allProjects)
+    }
+  
+    setupCategoryFilters() {
+      this.categoryBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Update active button
+          this.categoryBtns.forEach((b) => b.classList.remove("active"))
+          btn.classList.add("active")
+  
+          // Filter projects
+          this.currentCategory = btn.dataset.category
+          this.filterProjects()
+        })
+      })
+    }
+  
+    filterProjects() {
+      let filteredProjects = this.allProjects
+  
+      // Filter by category
+      if (this.currentCategory !== "all") {
+        filteredProjects = filteredProjects.filter((project) => project.dataset.category === this.currentCategory)
+      }
+  
+      this.showProjects(filteredProjects)
+    }
+  
+    showProjects(projects) {
+      // Hide all projects first
+      this.allProjects.forEach((project) => {
+        project.style.display = "none"
+        project.classList.remove("reveal", "active")
+      })
+  
+      // Show filtered projects with staggered animation
+      projects.forEach((project, index) => {
+        project.style.display = "block"
+        setTimeout(() => {
+          project.classList.add("reveal", "active")
+        }, index * 100)
+      })
+    }
+  }
+  
   // Scroll Reveal Animation
   class ScrollReveal {
     constructor() {
@@ -325,7 +563,7 @@ class BottomNavManager {
           </a>
           <a href="#" class="share-btn linkedin" data-platform="linkedin" data-url="${postUrl}" data-title="${postTitle}" aria-label="Share on LinkedIn">
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.564v11.452zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.564v11.452zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.065 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
           </a>
           <a href="#" class="share-btn bluesky" data-platform="bluesky" data-url="${postUrl}" data-title="${postTitle}" aria-label="Share on Bluesky">
@@ -483,6 +721,83 @@ class BottomNavManager {
     }
   }
   
+  // Code Highlight Manager
+  class CodeHighlightManager {
+    constructor() {
+      this.init()
+    }
+  
+    init() {
+      // Initialize Prism.js copy to clipboard plugin
+      const Prism = window.Prism // Declare Prism variable
+      if (typeof Prism !== "undefined") {
+        Prism.plugins.toolbar.registerButton("copy-to-clipboard", {
+          text: "Copy",
+          onClick: function (env) {
+            this.copyToClipboard(env.code)
+          },
+        })
+      }
+  
+      // Add custom copy functionality for code blocks
+      this.setupCopyButtons()
+    }
+  
+    setupCopyButtons() {
+      document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("copy-to-clipboard-button")) {
+          const codeBlock = e.target.closest("pre").querySelector("code")
+          const code = codeBlock.textContent
+          this.copyToClipboard(code)
+  
+          // Visual feedback
+          const originalText = e.target.textContent
+          e.target.textContent = "Copied!"
+          setTimeout(() => {
+            e.target.textContent = originalText
+          }, 2000)
+        }
+      })
+    }
+  
+    copyToClipboard(text) {
+      if (navigator.clipboard) {
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            console.log("[v0] Code copied to clipboard")
+          })
+          .catch((err) => {
+            console.error("[v0] Failed to copy code:", err)
+            this.fallbackCopyTextToClipboard(text)
+          })
+      } else {
+        this.fallbackCopyTextToClipboard(text)
+      }
+    }
+  
+    fallbackCopyTextToClipboard(text) {
+      const textArea = document.createElement("textarea")
+      textArea.value = text
+      textArea.style.top = "0"
+      textArea.style.left = "0"
+      textArea.style.position = "fixed"
+  
+      document.body.appendChild(textArea)
+      textArea.focus()
+      textArea.select()
+  
+      try {
+        document.execCommand("copy")
+        console.log("[v0] Code copied to clipboard (fallback)")
+      } catch (err) {
+        console.error("[v0] Fallback copy failed:", err)
+      }
+  
+      document.body.removeChild(textArea)
+    }
+  }
+  
   // Utility Functions
   function debounce(func, wait) {
     let timeout
@@ -497,15 +812,19 @@ class BottomNavManager {
   }
   
   document.addEventListener("DOMContentLoaded", () => {
-    new BottomNavManager()
+    new FloatingDockManager()
+    new MobileBottomNavManager()
     new ThemeManager()
+    new RotatingTextManager()
     new BlogManager()
+    new ProjectManager()
     new ScrollReveal()
     new SocialSharingManager()
     new ReadingProgressManager()
     new RelatedPostsManager()
+    new CodeHighlightManager()
   
-    console.log("[v0] Cyber Security Portfolio with bottom navigation initialized successfully")
+    console.log("[v0] Cyber Security Portfolio with Mac-style dock navigation initialized successfully")
   })
   
   // Handle window events
@@ -519,12 +838,17 @@ class BottomNavManager {
   
   window.CyberSecurityPortfolio = {
     BottomNavManager,
+    FloatingDockManager,
+    MobileBottomNavManager,
     ThemeManager,
+    RotatingTextManager,
     BlogManager,
+    ProjectManager,
     ScrollReveal,
     SocialSharingManager,
     ReadingProgressManager,
     RelatedPostsManager,
+    CodeHighlightManager,
     debounce,
   }
   
