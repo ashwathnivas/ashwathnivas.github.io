@@ -177,18 +177,17 @@ p {
   opacity: 0;
 }
 
-/* Updated navigation to Mac-style floating dock for desktop */
-/* Mac-style Floating Dock Navigation (Desktop) */
-.floating-dock {
+/* Unified Dock Navigation - Works on both desktop and mobile */
+.unified-dock {
   position: fixed;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  display: none; /* Hidden on mobile */
+  display: block;
 }
 
-.dock-container {
+.unified-dock .dock-container {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -200,8 +199,10 @@ p {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.dock-item {
+/* Updated dock item styling for unified approach */
+.unified-dock .dock-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 48px;
@@ -215,9 +216,11 @@ p {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  font-size: 0.7rem;
+  font-weight: 500;
 }
 
-.dock-item::before {
+.unified-dock .dock-item::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -227,150 +230,288 @@ p {
   border-radius: 16px;
 }
 
-.dock-item:hover {
+.unified-dock .dock-item:hover {
   color: white;
   transform: translateY(-8px) scale(1.1);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
-.dock-item:hover::before {
+.unified-dock .dock-item:hover::before {
   opacity: 1;
 }
 
-.dock-item.active {
+.unified-dock .dock-item.active {
   color: var(--accent-primary);
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
-.dock-item svg {
-  width: 24px;
-  height: 24px;
+.unified-dock .dock-item svg {
+  width: 20px;
+  height: 20px;
   position: relative;
   z-index: 1;
+  margin-bottom: 2px;
 }
 
-/* Theme toggle in dock */
-.dock-item.theme-toggle .theme-icon {
-  width: 24px;
-  height: 24px;
-  transition: var(--transition);
+.unified-dock .dock-item span {
+  font-size: 0.6rem;
   position: relative;
   z-index: 1;
+  display: none;
 }
 
-.dock-item.theme-toggle .theme-icon.sun-icon {
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* Mobile responsive adjustments for unified dock */
+@media (max-width: 768px) {
+  .unified-dock {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+  }
+
+  .unified-dock .dock-container {
+    border-radius: 20px;
+    padding: 0.5rem 0.75rem;
+    justify-content: space-between;
+  }
+
+  .unified-dock .dock-item {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .unified-dock .dock-item svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .unified-dock .dock-item span {
+    display: block;
+    font-size: 0.55rem;
+  }
 }
 
-.dock-item.theme-toggle .theme-icon.moon-icon {
-  opacity: 1;
+@media (max-width: 480px) {
+  .unified-dock .dock-item {
+    width: 40px;
+    height: 40px;
+  }
+
+  .unified-dock .dock-item svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .unified-dock .dock-item span {
+    font-size: 0.5rem;
+  }
 }
 
-[data-theme="light"] .dock-item.theme-toggle .theme-icon.sun-icon {
-  opacity: 1;
-}
-
-[data-theme="light"] .dock-item.theme-toggle .theme-icon.moon-icon {
-  opacity: 0;
-}
-
-/* Mobile Bottom Navigation */
+/* Hide old navigation systems */
+.floating-dock,
 .mobile-bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--bg-card);
-  border-top: 1px solid var(--border-color);
-  display: flex;
-  z-index: 1000;
-  backdrop-filter: blur(20px);
-  padding: 0.75rem 0;
-  box-shadow: var(--shadow-lg);
-  display: none; /* Hidden on desktop */
+  display: none !important;
 }
 
-.mobile-nav-item {
+/* Adding fade effect for rotating showcase */
+.rotating-text {
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.rotating-text.fade-out {
+  opacity: 0;
+}
+
+/* Page-specific styles for blog.html and projects.html */
+.page-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding-top: 2rem;
+}
+
+.page-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.page-description {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.blog-controls {
+  margin-bottom: 3rem;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.search-container {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.search-container input::placeholder {
+  color: var(--text-muted);
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+.blog-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.blog-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.read-time {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.project-filters {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.project-header h3 {
+  color: var(--text-primary);
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.project-links a {
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  padding: 0.75rem 0.5rem;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
   color: var(--text-muted);
   text-decoration: none;
-  transition: var(--transition);
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.mobile-nav-item:hover,
-.mobile-nav-item.active {
-  color: var(--accent-primary);
-  transform: translateY(-2px);
-}
-
-.mobile-nav-item svg {
-  width: 22px;
-  height: 22px;
-  margin-bottom: 0.25rem;
-}
-
-/* Mobile theme toggle */
-.mobile-nav-item.theme-toggle .theme-icon {
-  width: 22px;
-  height: 22px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
   transition: var(--transition);
 }
 
-.mobile-nav-item.theme-toggle .theme-icon.sun-icon {
-  opacity: 0;
-  position: absolute;
-  top: 0.75rem;
-  left: 50%;
-  transform: translateX(-50%);
+.project-links a:hover {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
 }
 
-.mobile-nav-item.theme-toggle .theme-icon.moon-icon {
-  opacity: 1;
+.project-links a svg {
+  width: 16px;
+  height: 16px;
 }
 
-[data-theme="light"] .mobile-nav-item.theme-toggle .theme-icon.sun-icon {
-  opacity: 1;
-}
-
-[data-theme="light"] .mobile-nav-item.theme-toggle .theme-icon.moon-icon {
-  opacity: 0;
-}
-
-/* Show appropriate navigation based on screen size */
-@media (min-width: 769px) {
-  .floating-dock {
-    display: block;
-  }
-  .mobile-bottom-nav {
-    display: none;
-  }
-}
-
+/* Enhanced mobile responsiveness */
 @media (max-width: 768px) {
-  .floating-dock {
-    display: none;
+  .page-header {
+    margin-bottom: 3rem;
+    padding-top: 1rem;
   }
-  .mobile-bottom-nav {
-    display: flex;
+
+  .blog-controls {
+    margin-bottom: 2rem;
+  }
+
+  .filter-tabs {
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .blog-posts-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
-/* Removed all left panel related styles and adjusted main content */
 /* Main Content */
 .main-content {
   min-height: 100vh;

@@ -63,11 +63,11 @@ class BottomNavManager {
     }
   }
   
-  // Floating Dock Manager (Desktop)
-  class FloatingDockManager {
+  // Unified Dock Manager - Works on both desktop and mobile
+  class UnifiedDockManager {
     constructor() {
-      this.floatingDock = document.getElementById("floating-dock")
-      this.dockItems = document.querySelectorAll(".floating-dock .dock-item")
+      this.unifiedDock = document.getElementById("unified-dock")
+      this.dockItems = document.querySelectorAll(".unified-dock .dock-item")
       this.sections = document.querySelectorAll("section[id]")
   
       this.init()
@@ -84,8 +84,14 @@ class BottomNavManager {
           item.addEventListener("click", (e) => {
             e.preventDefault()
             const targetId = item.getAttribute("href")
-            const targetSection = document.querySelector(targetId)
   
+            // Handle external links (blog.html, projects.html)
+            if (targetId && !targetId.startsWith("#")) {
+              window.location.href = targetId
+              return
+            }
+  
+            const targetSection = document.querySelector(targetId)
             if (targetSection) {
               const offsetTop = targetSection.offsetTop - 2 * 16 // 2rem offset
               window.scrollTo({
@@ -374,44 +380,6 @@ class BottomNavManager {
     }
   }
   
-  // Rotating Text Manager
-  class RotatingTextManager {
-    constructor() {
-      this.rotatingText = document.getElementById("rotating-text")
-      this.texts = [
-        "one line of code at a time",
-        "through advanced threat detection",
-        "with machine learning algorithms",
-        "by building robust defenses",
-        "using cutting-edge research",
-      ]
-      this.currentIndex = 0
-  
-      this.init()
-    }
-  
-    init() {
-      if (this.rotatingText) {
-        this.startRotation()
-      }
-    }
-  
-    startRotation() {
-      setInterval(() => {
-        this.currentIndex = (this.currentIndex + 1) % this.texts.length
-        this.updateText()
-      }, 3000) // Change every 3 seconds
-    }
-  
-    updateText() {
-      this.rotatingText.style.opacity = "0"
-      setTimeout(() => {
-        this.rotatingText.textContent = this.texts[this.currentIndex]
-        this.rotatingText.style.opacity = "1"
-      }, 300)
-    }
-  }
-  
   // Project Manager
   class ProjectManager {
     constructor() {
@@ -581,6 +549,47 @@ class BottomNavManager {
           </a>
         </div>
       `
+    }
+  }
+  
+  // Rotating Text Manager with Fade Effect
+  class RotatingTextManager {
+    constructor() {
+      this.rotatingText = document.getElementById("rotating-text")
+      this.texts = [
+        "one line of code at a time",
+        "through advanced threat detection",
+        "with machine learning algorithms",
+        "by building robust defenses",
+        "using cutting-edge research",
+      ]
+      this.currentIndex = 0
+  
+      this.init()
+    }
+  
+    init() {
+      if (this.rotatingText) {
+        this.startRotation()
+      }
+    }
+  
+    startRotation() {
+      setInterval(() => {
+        this.currentIndex = (this.currentIndex + 1) % this.texts.length
+        this.updateTextWithFade()
+      }, 4000) // Change every 4 seconds for better readability
+    }
+  
+    updateTextWithFade() {
+      // Add fade-out class
+      this.rotatingText.classList.add("fade-out")
+  
+      // Wait for fade-out transition to complete, then change text and fade in
+      setTimeout(() => {
+        this.rotatingText.textContent = this.texts[this.currentIndex]
+        this.rotatingText.classList.remove("fade-out")
+      }, 400) // Match the CSS transition duration
     }
   }
   
@@ -901,10 +910,9 @@ class BottomNavManager {
   }
   
   document.addEventListener("DOMContentLoaded", () => {
-    new FloatingDockManager()
-    new MobileBottomNavManager()
+    new UnifiedDockManager() // Using unified dock instead of separate managers
     new ThemeManager()
-    new RotatingTextManager()
+    new RotatingTextManager() // Enhanced with fade effect
     new BlogManager()
     new ProjectManager()
     new ScrollReveal()
@@ -912,9 +920,9 @@ class BottomNavManager {
     new ReadingProgressManager()
     new RelatedPostsManager()
     new CodeHighlightManager()
-    new DynamicBlogNavigationManager() // Added dynamic blog navigation
+    new DynamicBlogNavigationManager()
   
-    console.log("[v0] Cyber Security Portfolio with Mac-style dock navigation initialized successfully")
+    console.log("[v0] Cyber Security Portfolio with unified dock navigation initialized successfully")
   })
   
   // Handle window events
@@ -927,9 +935,7 @@ class BottomNavManager {
   )
   
   window.CyberSecurityPortfolio = {
-    BottomNavManager,
-    FloatingDockManager,
-    MobileBottomNavManager,
+    UnifiedDockManager, // New unified dock manager
     ThemeManager,
     RotatingTextManager,
     BlogManager,
@@ -939,7 +945,7 @@ class BottomNavManager {
     ReadingProgressManager,
     RelatedPostsManager,
     CodeHighlightManager,
-    DynamicBlogNavigationManager, // Added to exports
+    DynamicBlogNavigationManager,
     debounce,
   }
   
