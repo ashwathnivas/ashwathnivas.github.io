@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Your Name</title>
+    <title>Blog - Ashwath Nivas</title>
     <meta name="description" content="Cybersecurity insights, threat analysis, and technical deep-dives into modern security challenges">
     
     <link rel="stylesheet" href="assets/css/style.css">
@@ -12,38 +12,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-     Mac-style Floating Dock Navigation (Desktop) 
-    <nav class="floating-dock" id="floating-dock">
+    <nav class="unified-dock" id="unified-dock">
         <div class="dock-container">
             <a href="index.html#home" class="dock-item" data-section="home" title="Home">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                     <polyline points="9,22 9,12 15,12 15,22"/>
                 </svg>
+                <span>Home</span>
             </a>
             <a href="#" class="dock-item active" data-section="blog" title="Blog">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
                     <polyline points="14,2 14,8 20,8"/>
                 </svg>
+                <span>Blog</span>
             </a>
-            <a href="index.html#projects" class="dock-item" data-section="projects" title="Projects">
+            <a href="projects.html" class="dock-item" data-section="projects" title="Projects">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                     <line x1="8" y1="21" x2="16" y2="21"/>
                     <line x1="12" y1="17" x2="12" y2="21"/>
                 </svg>
+                <span>Projects</span>
             </a>
             <a href="index.html#tools" class="dock-item" data-section="tools" title="Tools">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
                 </svg>
+                <span>Tools</span>
             </a>
             <a href="index.html#about" class="dock-item" data-section="about" title="About">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                     <circle cx="12" cy="7" r="4"/>
                 </svg>
+                <span>About</span>
             </a>
             <button class="dock-item theme-toggle" id="theme-toggle" title="Toggle Theme">
                 <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -60,85 +64,26 @@
                 <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                 </svg>
+                <span>Theme</span>
             </button>
         </div>
     </nav>
 
-     Mobile Bottom Navigation 
-    <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
-        <a href="index.html#home" class="mobile-nav-item" data-section="home">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9,22 9,12 15,12 15,22"/>
-            </svg>
-            <span>Home</span>
-        </a>
-        <a href="#" class="mobile-nav-item active" data-section="blog">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
-                <polyline points="14,2 14,8 20,8"/>
-            </svg>
-            <span>Blog</span>
-        </a>
-        <a href="index.html#projects" class="mobile-nav-item" data-section="projects">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-            </svg>
-            <span>Projects</span>
-        </a>
-        <a href="index.html#tools" class="mobile-nav-item" data-section="tools">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-            </svg>
-            <span>Tools</span>
-        </a>
-        <a href="index.html#about" class="mobile-nav-item" data-section="about">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-            </svg>
-            <span>About</span>
-        </a>
-        <button class="mobile-nav-item theme-toggle" id="mobile-theme-toggle">
-            <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="5"/>
-                <line x1="12" y1="1" x2="12" y2="3"/>
-                <line x1="12" y1="21" x2="12" y2="23"/>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                <line x1="1" y1="12" x2="3" y2="12"/>
-                <line x1="21" y1="12" x2="23" y2="12"/>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-            </svg>
-            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-            <span>Theme</span>
-        </button>
-    </nav>
-
-     Main Content 
     <main class="main-content">
-        <div class="container" style="padding: 4rem 2rem;">
-             Page Header 
-            <header style="text-align: center; margin-bottom: 4rem;">
-                <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; color: var(--text-primary);">
-                    Blog
-                </h1>
-                <p style="font-size: 1.125rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+        <div class="container">
+             Updated page header with proper styling 
+            <header class="page-header">
+                <h1 class="page-title">Blog</h1>
+                <p class="page-description">
                     Cybersecurity insights, threat analysis, and technical deep-dives into modern security challenges
                 </p>
             </header>
 
-             Search and Filter 
-            <div class="blog-controls" style="margin-bottom: 3rem;">
+            <div class="blog-controls">
                 <div class="search-container">
-                    <input type="text" id="blog-search" placeholder="Search posts..." style="width: 100%; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius); background: var(--bg-secondary); color: var(--text-primary);">
+                    <input type="text" id="blog-search" placeholder="Search posts..." />
                 </div>
-                <div class="filter-tabs" style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+                <div class="filter-tabs">
                     <button class="filter-btn active" data-category="all">All Posts</button>
                     <button class="filter-btn" data-category="cybersecurity">Cyber Security</button>
                     <button class="filter-btn" data-category="malware">Malware Analysis</button>
@@ -147,16 +92,15 @@
                 </div>
             </div>
 
-             Blog Posts Grid 
             <div class="blog-posts-grid" id="blog-posts-grid">
                  Cybersecurity Posts 
                 <article class="blog-card" data-category="cybersecurity">
                     <div class="blog-card-header">
-                        <span class="blog-category cybersecurity">Cyber Security</span>
+                        <span class="blog-category">Cyber Security</span>
                         <span class="blog-date">Dec 15, 2024</span>
                     </div>
-                    <h2><a href="_posts/cybersecurity/ml-threat-detection.html">Advanced Threat Detection with Machine Learning</a></h2>
-                    <p>Exploring how ML algorithms can identify zero-day threats and improve detection accuracy in modern AV solutions...</p>
+                    <h2 class="blog-title"><a href="_posts/cybersecurity/ml-threat-detection.html">Advanced Threat Detection with Machine Learning</a></h2>
+                    <p class="blog-excerpt">Exploring how ML algorithms can identify zero-day threats and improve detection accuracy in modern AV solutions...</p>
                     <div class="blog-card-footer">
                         <span class="read-time">8 min read</span>
                         <a href="_posts/cybersecurity/ml-threat-detection.html" class="blog-link">Read more</a>
@@ -165,11 +109,11 @@
 
                 <article class="blog-card" data-category="cybersecurity">
                     <div class="blog-card-header">
-                        <span class="blog-category cybersecurity">Cyber Security</span>
+                        <span class="blog-category">Cyber Security</span>
                         <span class="blog-date">Dec 10, 2024</span>
                     </div>
-                    <h2><a href="_posts/cybersecurity/zero-day-detection.html">Zero-Day Exploit Detection Techniques</a></h2>
-                    <p>Advanced methods for identifying previously unknown vulnerabilities and attack vectors using behavioral analysis...</p>
+                    <h2 class="blog-title"><a href="_posts/cybersecurity/zero-day-detection.html">Zero-Day Exploit Detection Techniques</a></h2>
+                    <p class="blog-excerpt">Advanced methods for identifying previously unknown vulnerabilities and attack vectors using behavioral analysis...</p>
                     <div class="blog-card-footer">
                         <span class="read-time">6 min read</span>
                         <a href="_posts/cybersecurity/zero-day-detection.html" class="blog-link">Read more</a>
@@ -178,25 +122,24 @@
 
                 <article class="blog-card" data-category="cybersecurity">
                     <div class="blog-card-header">
-                        <span class="blog-category cybersecurity">Cyber Security</span>
+                        <span class="blog-category">Cyber Security</span>
                         <span class="blog-date">Dec 5, 2024</span>
                     </div>
-                    <h2><a href="_posts/cybersecurity/ai-network-security.html">AI-Powered Network Security Monitoring</a></h2>
-                    <p>How artificial intelligence is transforming network security monitoring and incident response capabilities...</p>
+                    <h2 class="blog-title"><a href="_posts/cybersecurity/ai-network-security.html">AI-Powered Network Security Monitoring</a></h2>
+                    <p class="blog-excerpt">How artificial intelligence is transforming network security monitoring and incident response capabilities...</p>
                     <div class="blog-card-footer">
                         <span class="read-time">7 min read</span>
                         <a href="_posts/cybersecurity/ai-network-security.html" class="blog-link">Read more</a>
                     </div>
                 </article>
 
-                 Malware Analysis Posts 
                 <article class="blog-card" data-category="malware">
                     <div class="blog-card-header">
-                        <span class="blog-category malware">Malware Analysis</span>
+                        <span class="blog-category">Malware Analysis</span>
                         <span class="blog-date">Nov 28, 2024</span>
                     </div>
-                    <h2><a href="_posts/malware/ransomware-analysis.html">Reverse Engineering Modern Ransomware</a></h2>
-                    <p>A deep dive into the latest ransomware techniques and how to analyze their behavior patterns...</p>
+                    <h2 class="blog-title"><a href="_posts/malware/ransomware-analysis.html">Reverse Engineering Modern Ransomware</a></h2>
+                    <p class="blog-excerpt">A deep dive into the latest ransomware techniques and how to analyze their behavior patterns...</p>
                     <div class="blog-card-footer">
                         <span class="read-time">12 min read</span>
                         <a href="_posts/malware/ransomware-analysis.html" class="blog-link">Read more</a>
@@ -205,39 +148,37 @@
 
                 <article class="blog-card" data-category="malware">
                     <div class="blog-card-header">
-                        <span class="blog-category malware">Malware Analysis</span>
+                        <span class="blog-category">Malware Analysis</span>
                         <span class="blog-date">Nov 20, 2024</span>
                     </div>
-                    <h2><a href="_posts/malware/dynamic-analysis.html">Dynamic Malware Analysis in Sandboxed Environments</a></h2>
-                    <p>Best practices for safely analyzing malware behavior using isolated sandbox environments...</p>
+                    <h2 class="blog-title"><a href="_posts/malware/dynamic-analysis.html">Dynamic Malware Analysis in Sandboxed Environments</a></h2>
+                    <p class="blog-excerpt">Best practices for safely analyzing malware behavior using isolated sandbox environments...</p>
                     <div class="blog-card-footer">
                         <span class="read-time">9 min read</span>
                         <a href="_posts/malware/dynamic-analysis.html" class="blog-link">Read more</a>
                     </div>
                 </article>
 
-                 Network Security Posts 
                 <article class="blog-card" data-category="network">
                     <div class="blog-card-header">
-                        <span class="blog-category network">Network Security</span>
+                        <span class="blog-category">Network Security</span>
                         <span class="blog-date">Nov 15, 2024</span>
                     </div>
-                    <h2><a href="_posts/network/intrusion-detection.html">Building Effective Intrusion Detection Systems</a></h2>
-                    <p>Comprehensive guide to designing and implementing robust network intrusion detection systems...</p>
+                    <h2 class="blog-title"><a href="_posts/network/intrusion-detection.html">Building Effective Intrusion Detection Systems</a></h2>
+                    <p class="blog-excerpt">Comprehensive guide to designing and implementing robust network intrusion detection systems...</p>
                     <div class="blog-card-footer">
                         <span class="read-time">10 min read</span>
                         <a href="_posts/network/intrusion-detection.html" class="blog-link">Read more</a>
                     </div>
                 </article>
 
-                 Digital Forensics Posts 
                 <article class="blog-card" data-category="forensics">
                     <div class="blog-card-header">
-                        <span class="blog-category forensics">Digital Forensics</span>
+                        <span class="blog-category">Digital Forensics</span>
                         <span class="blog-date">Nov 8, 2024</span>
                     </div>
-                    <h2><a href="_posts/forensics/memory-analysis.html">Memory Forensics for Incident Response</a></h2>
-                    <p>Techniques for analyzing system memory dumps to uncover evidence of security incidents...</p>
+                    <h2 class="blog-title"><a href="_posts/forensics/memory-analysis.html">Memory Forensics for Incident Response</a></h2>
+                    <p class="blog-excerpt">Techniques for analyzing system memory dumps to uncover evidence of security incidents...</p>
                     <div class="blog-card-footer">
                         <span class="read-time">11 min read</span>
                         <a href="_posts/forensics/memory-analysis.html" class="blog-link">Read more</a>
@@ -245,8 +186,7 @@
                 </article>
             </div>
 
-             Load More Button 
-            <div style="text-align: center; margin-top: 3rem;">
+            <div class="section-footer">
                 <button class="btn-primary" id="load-more-posts" style="display: none;">Load More Posts</button>
             </div>
         </div>
