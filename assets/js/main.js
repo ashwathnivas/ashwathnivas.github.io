@@ -557,11 +557,10 @@ class BottomNavManager {
     constructor() {
       this.rotatingText = document.getElementById("rotating-text")
       this.texts = [
-        "one line of code at a time",
-        "through advanced threat detection",
-        "with machine learning algorithms",
-        "by building robust defenses",
-        "using cutting-edge research",
+        "that stop attackers.",
+        "that protect critical assets.",
+        "that are highly available and scalable.",
+        "that leverage agentic AI for threat hunting.",
       ]
       this.currentIndex = 0
   
@@ -657,30 +656,6 @@ class BottomNavManager {
           category: "cybersecurity",
           date: "2024-12-10",
         },
-        {
-          title: "Advanced Threat Detection with Machine Learning",
-          url: "ml-threat-detection.html",
-          category: "cybersecurity",
-          date: "2024-12-15",
-        },
-        {
-          title: "AI-Powered Network Security Monitoring",
-          url: "ai-network-security.html",
-          category: "cybersecurity",
-          date: "2024-12-20",
-        },
-        {
-          title: "Reverse Engineering Modern Ransomware",
-          url: "../malware/ransomware-analysis.html",
-          category: "malware",
-          date: "2024-11-28",
-        },
-        {
-          title: "Dynamic Malware Analysis in Sandboxed Environments",
-          url: "../malware/dynamic-analysis.html",
-          category: "malware",
-          date: "2024-11-20",
-        },
       ]
       this.init()
     }
@@ -758,30 +733,6 @@ class BottomNavManager {
           excerpt: "Exploring how ML algorithms can identify zero-day threats...",
           category: "cybersecurity",
           url: "_posts/cybersecurity/ml-threat-detection.html",
-        },
-        {
-          title: "Building Scalable Security Infrastructure",
-          excerpt: "Best practices for designing security systems...",
-          category: "engineering",
-          url: "_posts/engineering/scalable-security.html",
-        },
-        {
-          title: "Reverse Engineering Modern Ransomware",
-          excerpt: "A deep dive into the latest ransomware techniques...",
-          category: "malware",
-          url: "_posts/malware/ransomware-analysis.html",
-        },
-        {
-          title: "Zero-Day Vulnerability Research",
-          excerpt: "Methods and tools for discovering security flaws...",
-          category: "cybersecurity",
-          url: "_posts/cybersecurity/zero-day-research.html",
-        },
-        {
-          title: "API Security Best Practices",
-          excerpt: "Securing modern web APIs against common attacks...",
-          category: "engineering",
-          url: "_posts/engineering/api-security.html",
         },
       ]
   
