@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Post Title Here</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Your Post Title Here</h1>
+    <small>YYYY-MM-DD</small> <!-- date shown in site-links.html card -->
+    <nav>
+      <a href="../../index.html">Home</a> |
+      <a href="../../site-links.html">Blog</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Summary paragraph used in site-links.html -->
+    <p>Write a brief summary of your post here. This will appear in the card grid.</p>
+
+    <!-- Full post content below -->
+    <section>
+      <h2>Introduction</h2>
+      <p>Your content here...</p>
+
+      <!-- Example: embed video -->
+      <video controls>
+        <source src="video.mp4" type="video/mp4">
+      </video>
+
+      <!-- Example: embed audio -->
+      <audio controls>
+        <source src="audio.mp3" type="audio/mpeg">
+      </audio>
+
+      <!-- Example: add image -->
+      <img src="image.png" alt="Description">
+
+      <!-- You can also mount Svelte widgets if needed -->
+      <div id="example-widget"></div>
+      <script type="module" src="../../assets/widgets/ExampleWidget.js"></script>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Ethan</p>
+  </footer>
+</body>
+</html>
