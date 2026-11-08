@@ -1,0 +1,6 @@
+# Crawling stays allowed so link previews (LinkedIn, X, WhatsApp) keep working.
+# Pages are kept out of search results with <meta name="robots" content="noindex, follow">.
+# To become discoverable (planned for about January 2027): delete that one meta line
+# from index.html, writing.html, about.html, now.html and 404.html.
+User-agent: *
+Allow: /
